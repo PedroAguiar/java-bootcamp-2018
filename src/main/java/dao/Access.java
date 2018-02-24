@@ -6,7 +6,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.List;
 
-//Make the connection in other class???
+
+
 
 public class Access {
 
@@ -126,17 +127,28 @@ public class Access {
 
     public String showAllOrders() throws SQLException
     {
+        //PReguntar como hacerlo, 2 RS al mismo tiempo no se puede
+        String allOrdersString = "";
         Statement stmt = conn.createStatement();
-        String query = "SELECT * FROM Orders";
+        String query = "SELECT * FROM Orders O JOIN Items I ON O.id_order = I.id_order WHERE O.id_order = I.id_order";
         ResultSet rs = stmt.executeQuery(query);
-        while(rs.next()){
+        StringBuffer itemsXorder = new StringBuffer();
+        itemsXorder.append("ITEMS: ");
+        while (rs.next()) {
             int id_order = rs.getInt("id_order");
             int id_client = rs.getInt("id_client");
             int id_payment = rs.getInt("id_payment");
+            ResultSet rs2 = stmt.executeQuery("SELECT * FROM Orders O JOIN Items I ON O.id_order = I.id_order WHERE O.id_order = " + id_order);
+                while (rs2.next()) {
+                    String item = rs.getString("name");
+                    itemsXorder.append(item + " - ");
+                }
+                System.out.println("Client id: " + id_client + ", Order id: " + id_order + ", Payment id: " + id_payment + "\t");
+                System.out.println(itemsXorder);
+            }
 
-            System.out.println("Client id: "+id_client+", Order id: "+id_order+ ", Payment id: " + id_payment+"\t");
-        }
-        return query;
+
+        return allOrdersString;
     }
 
 

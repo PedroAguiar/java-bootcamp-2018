@@ -4,6 +4,12 @@ import controller.Controller;
 import java.sql.SQLException;
 import java.util.Scanner;
 
+//Dividir clases acceso, en AccesoClient, AccesoOrder ,etc..
+//Lo mismo con Controlador y Servicios, separar COntrollerCLient, ControlloerOrder, ServiceCLient, etc..
+//Buscar forma de facilitar nextId
+//Como aplicar singleton para la conexion, es mejor hacerlo con singleton?
+//Validar todos los inputs, no validé ninguo hasta ahora. <--- IMPORTANTE
+
 
 public class javaApp {
     public static void main(String[] args) throws SQLException, ClassNotFoundException {
@@ -20,7 +26,7 @@ public class javaApp {
                 op = scan.nextInt();
                 switch (op) {
                     case 1:
-                        System.out.println("..CLIENT..");
+                        System.out.println("..CLIENT MENU..");
                         controller.clientMenu();
                     break;
 
