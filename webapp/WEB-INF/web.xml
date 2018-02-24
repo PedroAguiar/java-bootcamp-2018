@@ -1,0 +1,35 @@
+<!DOCTYPE web-app PUBLIC
+ "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN"
+ "http://java.sun.com/dtd/web-app_2_3.dtd" >
+
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+         xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee
+		http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
+         id="WebApp_ID" version="3.1">
+  <display-name>Shopping Cart</display-name>
+  <context-param>
+    <param-name>jdbcURL</param-name>
+    <param-value>jdbc:mysql://localhost:3306/shoppingcart</param-value>
+  </context-param>
+
+  <context-param>
+    <param-name>jdbcUsername</param-name>
+    <param-value>root</param-value>
+  </context-param>
+
+  <context-param>
+    <param-name>jdbcPassword</param-name>
+    <param-value>36925612</param-value>
+  </context-param>
+  <servlet>
+    <servlet-name>Client</servlet-name>
+    <servlet-class>main.com.java.shoppingcart.controllers.ClientServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Client</servlet-name>
+    <url-pattern>/clients</url-pattern>
+  </servlet-mapping>
+
+
+</web-app>
