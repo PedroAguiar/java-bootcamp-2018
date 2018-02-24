@@ -63,7 +63,8 @@ public class ItemController {
 
         Item newItem = new Item(name, idOrder);
         itemDAO.insertItem(newItem);
-        response.sendRedirect("listItem");
+        response.sendRedirect("listItem?id="+newItem.getIdOrder());
+
     }
 
     public void update(HttpServletRequest request, HttpServletResponse response)
@@ -72,17 +73,18 @@ public class ItemController {
         String name = request.getParameter("name");
         int idOrder = Integer.parseInt(request.getParameter("idOrder"));
 
-        Item order = new Item(id, name, idOrder);
-        itemDAO.updateItem(order);
-        response.sendRedirect("listItem");
+        Item item = new Item(id, name, idOrder);
+        itemDAO.updateItem(item);
+        response.sendRedirect("listItem?id="+item.getIdOrder());
+
     }
 
     public void delete(HttpServletRequest request, HttpServletResponse response)
             throws SQLException, IOException {
         int id = Integer.parseInt(request.getParameter("id"));
-        Item order = new Item(id);
-        itemDAO.deleteItem(order);
-        response.sendRedirect("listItem");
+        Item item = new Item(id);
+        itemDAO.deleteItem(item);
+        response.sendRedirect("listItem?id="+item.getIdOrder());
 
     }
 

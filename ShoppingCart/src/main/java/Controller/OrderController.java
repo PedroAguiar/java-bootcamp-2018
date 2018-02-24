@@ -64,7 +64,7 @@ public class OrderController {
 
         Order newOrder = new Order(name, idClient);
         orderDAO.insertOrder(newOrder);
-        response.sendRedirect("listOrder");
+        response.sendRedirect("listOrder?id="+idClient);
     }
 
     public void update(HttpServletRequest request, HttpServletResponse response)
@@ -75,7 +75,7 @@ public class OrderController {
 
         Order order = new Order(id, name, idClient);
         orderDAO.updateOrder(order);
-        response.sendRedirect("listOrder");
+        response.sendRedirect("listOrder?id="+idClient);
     }
 
     public void delete(HttpServletRequest request, HttpServletResponse response)
@@ -83,7 +83,7 @@ public class OrderController {
         int id = Integer.parseInt(request.getParameter("id"));
         Order order = new Order(id);
         orderDAO.deleteOrder(order);
-        response.sendRedirect("listOrder");
+        response.sendRedirect("listOrder?id="+order.getIdClient());
 
     }
 
