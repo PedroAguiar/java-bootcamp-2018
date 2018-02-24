@@ -13,6 +13,12 @@ public class OrderDAO {
     private String jdbcPassword;
     private Connection jdbcConnection;
 
+    public OrderDAO(String jdbcURL, String jdbcUsername, String jdbcPassword) {
+        this.jdbcURL = jdbcURL;
+        this.jdbcUsername = jdbcUsername;
+        this.jdbcPassword = jdbcPassword;
+    }
+
     public OrderDAO(String jdbcURL, String jdbcUsername, String jdbcPassword, Connection jdbcConnection) {
         this.jdbcURL = jdbcURL;
         this.jdbcUsername = jdbcUsername;
@@ -20,35 +26,47 @@ public class OrderDAO {
         this.jdbcConnection = jdbcConnection;
     }
 
-    public boolean insertOrder(Order order) throws SQLException {
-        String sql = "INSERT INTO order (name) VALUES ?";
+    protected void connect() throws SQLException {
+        if (jdbcConnection == null || jdbcConnection.isClosed()) {
+            try {
+                Class.forName("com.mysql.jdbc.Driver");
+            } catch (ClassNotFoundException e) {
+                throw new SQLException(e);
+            }
+            jdbcConnection = DriverManager.getConnection(jdbcURL, jdbcUsername, jdbcPassword);
+        }
+    }
 
-        connectionJDBC connection;
-        connection = new connectionJDBC(jdbcURL, jdbcUsername, jdbcPassword, jdbcConnection);
-        connection.connect();
+    protected void disconnect() throws SQLException {
+        if (jdbcConnection != null && !jdbcConnection.isClosed()) {
+            jdbcConnection.close();
+        }
+    }
 
+    public boolean insertOrder(Order order, int idClient) throws SQLException {
+        String sql = "INSERT INTO order (name, client_Orders_fk) VALUES (?,?)";
+        connect();
         PreparedStatement statement = jdbcConnection.prepareStatement(sql);
         statement.setString(1, order.getName());
+        statement.setInt(2, idClient);
 
         boolean rowInserted = statement.executeUpdate() > 0;
         statement.close();
 
-        connection.disconnect();
+        disconnect();
 
         return rowInserted;
     }
 
-    public List<Order> listAllOrders(Client client) throws SQLException {
+    public List<Order> listAllOrders(int idClient) throws SQLException {
         List<Order> listOrder = new ArrayList<>();
 
-        String sql = "SELECT * FROM `order` WHERE idOrder = ?";
+        String sql = "SELECT * FROM `order` WHERE client_Orders_fk = ?";
 
-        connectionJDBC connection;
-        connection = new connectionJDBC(jdbcURL, jdbcUsername, jdbcPassword, jdbcConnection);
-        connection.connect();
+        connect();
 
         PreparedStatement statement = jdbcConnection.prepareStatement(sql);
-        statement.setInt(1, client.getId());
+        statement.setInt(1, idClient);
         ResultSet resultSet = statement.executeQuery(sql);
 
         while (resultSet.next()) {
@@ -62,25 +80,23 @@ public class OrderDAO {
         resultSet.close();
         statement.close();
 
-        connection.disconnect();
+        disconnect();
 
         return listOrder;
     }
 
-    public boolean deleteOrder(Client client) throws SQLException {
+    public boolean deleteOrder(Order order) throws SQLException {
         String sql = "DELETE FROM order where idOrder = ?";
 
-        connectionJDBC connection;
-        connection = new connectionJDBC(jdbcURL, jdbcUsername, jdbcPassword, jdbcConnection);
-        connection.connect();
+        connect();
 
         PreparedStatement statement = jdbcConnection.prepareStatement(sql);
-        statement.setInt(1, client.getId());
+        statement.setInt(1, order.getId());
 
         boolean rowDeleted = statement.executeUpdate() > 0;
         statement.close();
 
-        connection.disconnect();
+        disconnect();
 
         return rowDeleted;
     }
@@ -88,9 +104,7 @@ public class OrderDAO {
     public boolean updateOrder(Order order) throws SQLException {
         String sql = "UPDATE order SET name = ? WHERE idOrder = ?";
 
-        connectionJDBC connection;
-        connection = new connectionJDBC(jdbcURL, jdbcUsername, jdbcPassword, jdbcConnection);
-        connection.connect();
+        connect();
 
         PreparedStatement statement = jdbcConnection.prepareStatement(sql);
         statement.setString(1, order.getName());
@@ -99,7 +113,7 @@ public class OrderDAO {
         boolean rowUpdated = statement.executeUpdate() > 0;
         statement.close();
 
-        connection.disconnect();
+        disconnect();
 
         return rowUpdated;
     }
@@ -108,9 +122,7 @@ public class OrderDAO {
         Order order = null;
         String sql = "SELECT * FROM order WHERE idOrder = ?";
 
-        connectionJDBC connection;
-        connection = new connectionJDBC(jdbcURL, jdbcUsername, jdbcPassword, jdbcConnection);
-        connection.connect();
+        connect();
 
         PreparedStatement statement = jdbcConnection.prepareStatement(sql);
         statement.setInt(1, id);
@@ -126,7 +138,7 @@ public class OrderDAO {
         resultSet.close();
         statement.close();
 
-        connection.disconnect();
+        disconnect();
 
         return order;
     }

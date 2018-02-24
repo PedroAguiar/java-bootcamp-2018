@@ -13,11 +13,10 @@ public class ItemDAO {
     private String jdbcPassword;
     private Connection jdbcConnection;
 
-    public ItemDAO(String jdbcURL, String jdbcUsername, String jdbcPassword, Connection jdbcConnection) {
+    public ItemDAO(String jdbcURL, String jdbcUsername, String jdbcPassword) {
         this.jdbcURL = jdbcURL;
         this.jdbcUsername = jdbcUsername;
-        this.jdbcPassword = jdbcPassword;
-        this.jdbcConnection = jdbcConnection;
+        this.jdbcPassword = jdbcPassword;;
     }
 
     protected void connect() throws SQLException {

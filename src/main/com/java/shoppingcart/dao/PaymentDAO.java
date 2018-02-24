@@ -1,6 +1,7 @@
 package main.com.java.shoppingcart.dao;
 
 import main.com.java.shoppingcart.entities.Client;
+import main.com.java.shoppingcart.entities.Order;
 import main.com.java.shoppingcart.entities.Payment;
 
 import java.sql.*;
@@ -13,19 +14,33 @@ public class PaymentDAO {
     private String jdbcPassword;
     private Connection jdbcConnection;
 
-    public PaymentDAO(String jdbcURL, String jdbcUsername, String jdbcPassword, Connection jdbcConnection) {
+    public PaymentDAO(String jdbcURL, String jdbcUsername, String jdbcPassword) {
         this.jdbcURL = jdbcURL;
         this.jdbcUsername = jdbcUsername;
         this.jdbcPassword = jdbcPassword;
-        this.jdbcConnection = jdbcConnection;
     }
 
-    public boolean insertpayment(Payment payment) throws SQLException {
+    protected void connect() throws SQLException {
+        if (jdbcConnection == null || jdbcConnection.isClosed()) {
+            try {
+                Class.forName("com.mysql.jdbc.Driver");
+            } catch (ClassNotFoundException e) {
+                throw new SQLException(e);
+            }
+            jdbcConnection = DriverManager.getConnection(jdbcURL, jdbcUsername, jdbcPassword);
+        }
+    }
+
+    protected void disconnect() throws SQLException {
+        if (jdbcConnection != null && !jdbcConnection.isClosed()) {
+            jdbcConnection.close();
+        }
+    }
+
+    public boolean makePayment(Payment payment) throws SQLException {
         String sql = "INSERT INTO payment (amount) VALUES ?";
 
-        connectionJDBC connection;
-        connection = new connectionJDBC(jdbcURL, jdbcUsername, jdbcPassword, jdbcConnection);
-        connection.connect();
+        connect();
 
         PreparedStatement statement = jdbcConnection.prepareStatement(sql);
         statement.setFloat(1, payment.getAmount());
@@ -33,22 +48,20 @@ public class PaymentDAO {
         boolean rowInserted = statement.executeUpdate() > 0;
         statement.close();
 
-        connection.disconnect();
+        disconnect();
 
         return rowInserted;
     }
 
-    public List<Payment> listAllpayments(Client client) throws SQLException {
+    public List<Payment> showPayment(Integer idOrder) throws SQLException {
         List<Payment> listpayment = new ArrayList<>();
 
-        String sql = "SELECT * FROM `payment` WHERE idPayment = ?";
+        String sql = "SELECT * FROM `payment` WHERE idOrder_fk = ?";
 
-        connectionJDBC connection;
-        connection = new connectionJDBC(jdbcURL, jdbcUsername, jdbcPassword, jdbcConnection);
-        connection.connect();
+        connect();
 
         PreparedStatement statement = jdbcConnection.prepareStatement(sql);
-        statement.setInt(1, client.getId());
+        statement.setInt(1, idOrder);
         ResultSet resultSet = statement.executeQuery(sql);
 
         while (resultSet.next()) {
@@ -62,17 +75,15 @@ public class PaymentDAO {
         resultSet.close();
         statement.close();
 
-        connection.disconnect();
+        disconnect();
 
         return listpayment;
     }
 
-    public boolean deletepayment(Client client) throws SQLException {
+    public boolean deletePayment(Client client) throws SQLException {
         String sql = "DELETE FROM payment where idPayment = ?";
 
-        connectionJDBC connection;
-        connection = new connectionJDBC(jdbcURL, jdbcUsername, jdbcPassword, jdbcConnection);
-        connection.connect();
+        connect();
 
         PreparedStatement statement = jdbcConnection.prepareStatement(sql);
         statement.setInt(1, client.getId());
@@ -80,17 +91,15 @@ public class PaymentDAO {
         boolean rowDeleted = statement.executeUpdate() > 0;
         statement.close();
 
-        connection.disconnect();
+        disconnect();
 
         return rowDeleted;
     }
 
-    public boolean updatepayment(Payment payment) throws SQLException {
+    public boolean updatePayment(Payment payment) throws SQLException {
         String sql = "UPDATE payment SET name = ? WHERE idPayment = ?";
 
-        connectionJDBC connection;
-        connection = new connectionJDBC(jdbcURL, jdbcUsername, jdbcPassword, jdbcConnection);
-        connection.connect();
+        connect();
 
         PreparedStatement statement = jdbcConnection.prepareStatement(sql);
         statement.setFloat(1, payment.getAmount());
@@ -99,18 +108,16 @@ public class PaymentDAO {
         boolean rowUpdated = statement.executeUpdate() > 0;
         statement.close();
 
-        connection.disconnect();
+        disconnect();
 
         return rowUpdated;
     }
 
-    public Payment getpayment(int id) throws SQLException {
+    public Payment getPayment(int id) throws SQLException {
         Payment payment = null;
         String sql = "SELECT * FROM payment WHERE idPayment = ?";
 
-        connectionJDBC connection;
-        connection = new connectionJDBC(jdbcURL, jdbcUsername, jdbcPassword, jdbcConnection);
-        connection.connect();
+        connect();
 
         PreparedStatement statement = jdbcConnection.prepareStatement(sql);
         statement.setInt(1, id);
@@ -126,7 +133,7 @@ public class PaymentDAO {
         resultSet.close();
         statement.close();
 
-        connection.disconnect();
+        disconnect();
 
         return payment;
     }
