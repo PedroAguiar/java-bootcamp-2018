@@ -1,25 +1,25 @@
-package main.java.Model;
+package com.homework.Model;
 
-public class Item {
+public class Payment {
     private int id;
-    private String name;
+    private Float amount;
     private int idOrder;
 
-    public Item() {
+    public Payment() {
     }
 
-    public Item(int id) {
+    public Payment(int id) {
         this.id = id;
     }
 
-    public Item(String name, int idOrder) {
-        this.name = name;
+    public Payment(Float amount, int idOrder) {
+        this.amount = amount;
         this.idOrder = idOrder;
     }
 
-    public Item(int id, String name, int idOrder) {
+    public Payment(int id, Float amount, int idOrder) {
         this.id = id;
-        this.name = name;
+        this.amount = amount;
         this.idOrder = idOrder;
     }
 
@@ -31,12 +31,12 @@ public class Item {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public Float getAmount() {
+        return amount;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setAmount(Float amount) {
+        this.amount = amount;
     }
 
     public int getIdOrder() {

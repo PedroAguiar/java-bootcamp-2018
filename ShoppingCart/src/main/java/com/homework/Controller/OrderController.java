@@ -1,7 +1,8 @@
-package main.java.Controller;
+package com.homework.Controller;
 
-import main.java.Dao.OrderDao;
-import main.java.Model.Order;
+
+import com.homework.Dao.OrderDao;
+import com.homework.Model.Order;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -10,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
+
 
 public class OrderController {
     private OrderDao orderDAO;

@@ -22,7 +22,7 @@
 
     <servlet>
         <servlet-name>ControllerServlet</servlet-name>
-        <servlet-class>main.java.Controller.ControllerServlet</servlet-class>
+        <servlet-class>com.homework.Controller.ControllerServlet</servlet-class>
     </servlet>
 
 

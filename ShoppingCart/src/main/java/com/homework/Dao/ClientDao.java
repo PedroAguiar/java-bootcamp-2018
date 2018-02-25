@@ -1,22 +1,24 @@
-package main.java.Dao;
+package com.homework.Dao;
 
-import main.java.Model.Item;
-
+import com.homework.Model.Client;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ItemDao {
+public class ClientDao {
+
     private String jdbcURL;
     private String jdbcUsername;
     private String jdbcPassword;
     private Connection jdbcConnection;
+    private ServiceDao servDao;
 
-    public ItemDao(String jdbcURL, String jdbcUsername, String jdbcPassword) {
+    public ClientDao(String jdbcURL, String jdbcUsername, String jdbcPassword) {
         this.jdbcURL = jdbcURL;
         this.jdbcUsername = jdbcUsername;
         this.jdbcPassword = jdbcPassword;
     }
+
     protected void connect() throws SQLException {
         if (jdbcConnection == null || jdbcConnection.isClosed()) {
             try {
@@ -35,14 +37,14 @@ public class ItemDao {
         }
     }
 
-    public boolean insertItem(Item item) throws SQLException {
-        String sql = "INSERT INTO shoppingcart.item(nameItem, idOrder_fk) VALUES (?, ?)";
+    public boolean insertClient(Client client) throws SQLException {
+        String sql = "INSERT INTO client (firstName, lastName, description) VALUES (?, ?, ?)";
         connect();
 
         PreparedStatement statement = jdbcConnection.prepareStatement(sql);
-        statement.setString(1, item.getName());
-        statement.setInt(2, item.getIdOrder());
-
+        statement.setString(1, client.getFirstName());
+        statement.setString(2, client.getLastName());
+        statement.setString(3, client.getDescription());
 
         boolean rowInserted = statement.executeUpdate() > 0;
         statement.close();
@@ -50,10 +52,10 @@ public class ItemDao {
         return rowInserted;
     }
 
-    public List<Item> listAllItems() throws SQLException {
-        List<Item> listItem = new ArrayList<>();
+    public List<Client> listAllClients() throws SQLException {
+        List<Client> listClient = new ArrayList<>();
 
-        String sql = "SELECT * FROM shoppingcart.item";
+        String sql = "SELECT * FROM client";
 
         connect();
 
@@ -61,12 +63,13 @@ public class ItemDao {
         ResultSet resultSet = statement.executeQuery(sql);
 
         while (resultSet.next()) {
-            int id = resultSet.getInt("idItem");
-            String name = resultSet.getString("nameItem");
-            int idOrder = resultSet.getInt("idOrder_fk");
+            int id = resultSet.getInt("idClient");
+            String firstName = resultSet.getString("firstName");
+            String lastName = resultSet.getString("lastName");
+            String description = resultSet.getString("description");
 
-            Item item = new Item(id, name, idOrder);
-            listItem.add(item);
+            Client client = new Client(id, firstName, lastName, description);
+            listClient.add(client);
         }
 
         resultSet.close();
@@ -74,16 +77,16 @@ public class ItemDao {
 
         disconnect();
 
-        return listItem;
+        return listClient;
     }
 
-    public boolean deleteItem(Item item) throws SQLException {
-        String sql = "DELETE FROM shoppingcart.item where idItem = ?";
+    public boolean deleteClient(Client client) throws SQLException {
+        String sql = "DELETE FROM client where idClient = ?";
 
         connect();
 
         PreparedStatement statement = jdbcConnection.prepareStatement(sql);
-        statement.setInt(1, item.getId());
+        statement.setInt(1, client.getId());
 
         boolean rowDeleted = statement.executeUpdate() > 0;
         statement.close();
@@ -91,14 +94,16 @@ public class ItemDao {
         return rowDeleted;
     }
 
-    public boolean updateItem(Item item) throws SQLException {
-        String sql = "UPDATE shoppingcart.item SET nameItem = ?";
-        sql += " WHERE idItem = ?";
+    public boolean updateClient(Client client) throws SQLException {
+        String sql = "UPDATE client SET firstName = ?, lastName = ?, description = ?";
+        sql += " WHERE idClient = ?";
         connect();
 
         PreparedStatement statement = jdbcConnection.prepareStatement(sql);
-        statement.setString(1, item.getName());
-        statement.setInt(2, item.getId());
+        statement.setString(1, client.getFirstName());
+        statement.setString(2, client.getLastName());
+        statement.setString(3, client.getDescription());
+        statement.setInt(4, client.getId());
 
         boolean rowUpdated = statement.executeUpdate() > 0;
         statement.close();
@@ -106,9 +111,9 @@ public class ItemDao {
         return rowUpdated;
     }
 
-    public Item getItem(int id) throws SQLException {
-        Item item = null;
-        String sql = "SELECT * FROM shoppingcart.item WHERE idItem = ?";
+    public Client getClient(int id) throws SQLException {
+        Client client = null;
+        String sql = "SELECT * FROM client WHERE idClient = ?";
 
         connect();
 
@@ -118,14 +123,16 @@ public class ItemDao {
         ResultSet resultSet = statement.executeQuery();
 
         if (resultSet.next()) {
-            String name = resultSet.getString("nameItem");
-            int idOrder = resultSet.getInt("idOrder_fk");
-            item = new Item(id, name, idOrder);
+            String firstName = resultSet.getString("firstName");
+            String lastName = resultSet.getString("lastName");
+            String description = resultSet.getString("description");
+
+            client = new Client(id, firstName, lastName, description);
         }
 
         resultSet.close();
         statement.close();
 
-        return item;
+        return client;
     }
 }

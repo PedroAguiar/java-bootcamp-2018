@@ -1,7 +1,9 @@
-package main.java.Controller;
+package com.homework.Controller;
 
-import main.java.Dao.ItemDao;
-import main.java.Model.Item;
+
+
+import com.homework.Dao.ItemDao;
+import com.homework.Model.Item;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -10,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
+
 
 public class ItemController {
     private ItemDao itemDAO;

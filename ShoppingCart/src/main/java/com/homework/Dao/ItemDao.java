@@ -1,20 +1,20 @@
-package main.java.Dao;
+package com.homework.Dao;
 
-import main.java.Model.Payment;
+import com.homework.Model.Item;
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class PaymentDao {
+public class ItemDao {
     private String jdbcURL;
-    private String jdbcUseramount;
+    private String jdbcUsername;
     private String jdbcPassword;
     private Connection jdbcConnection;
 
-    public PaymentDao(String jdbcURL, String jdbcUseramount, String jdbcPassword) {
+    public ItemDao(String jdbcURL, String jdbcUsername, String jdbcPassword) {
         this.jdbcURL = jdbcURL;
-        this.jdbcUseramount = jdbcUseramount;
+        this.jdbcUsername = jdbcUsername;
         this.jdbcPassword = jdbcPassword;
     }
     protected void connect() throws SQLException {
@@ -25,7 +25,7 @@ public class PaymentDao {
                 throw new SQLException(e);
             }
             jdbcConnection = DriverManager.getConnection(
-                    jdbcURL, jdbcUseramount, jdbcPassword);
+                    jdbcURL, jdbcUsername, jdbcPassword);
         }
     }
 
@@ -35,13 +35,13 @@ public class PaymentDao {
         }
     }
 
-    public boolean insertPayment(Payment payment) throws SQLException {
-        String sql = "INSERT INTO shoppingcart.payment(amount, idOrder_fk) VALUES (?, ?)";
+    public boolean insertItem(Item item) throws SQLException {
+        String sql = "INSERT INTO shoppingcart.item(nameItem, idOrder_fk) VALUES (?, ?)";
         connect();
 
         PreparedStatement statement = jdbcConnection.prepareStatement(sql);
-        statement.setFloat(1, payment.getAmount());
-        statement.setInt(2, payment.getIdOrder());
+        statement.setString(1, item.getName());
+        statement.setInt(2, item.getIdOrder());
 
 
         boolean rowInserted = statement.executeUpdate() > 0;
@@ -50,10 +50,10 @@ public class PaymentDao {
         return rowInserted;
     }
 
-    public List<Payment> listAllPayments() throws SQLException {
-        List<Payment> listPayment = new ArrayList<>();
+    public List<Item> listAllItems() throws SQLException {
+        List<Item> listItem = new ArrayList<>();
 
-        String sql = "SELECT * FROM shoppingcart.payment";
+        String sql = "SELECT * FROM shoppingcart.item";
 
         connect();
 
@@ -61,12 +61,12 @@ public class PaymentDao {
         ResultSet resultSet = statement.executeQuery(sql);
 
         while (resultSet.next()) {
-            int id = resultSet.getInt("idPayment");
-            Float amount = Float.parseFloat(resultSet.getString("amount"));
+            int id = resultSet.getInt("idItem");
+            String name = resultSet.getString("nameItem");
             int idOrder = resultSet.getInt("idOrder_fk");
 
-            Payment payment = new Payment(id, amount, idOrder);
-            listPayment.add(payment);
+            Item item = new Item(id, name, idOrder);
+            listItem.add(item);
         }
 
         resultSet.close();
@@ -74,16 +74,16 @@ public class PaymentDao {
 
         disconnect();
 
-        return listPayment;
+        return listItem;
     }
 
-    public boolean deletePayment(Payment payment) throws SQLException {
-        String sql = "DELETE FROM shoppingcart.payment where idPayment = ?";
+    public boolean deleteItem(Item item) throws SQLException {
+        String sql = "DELETE FROM shoppingcart.item where idItem = ?";
 
         connect();
 
         PreparedStatement statement = jdbcConnection.prepareStatement(sql);
-        statement.setInt(1, payment.getId());
+        statement.setInt(1, item.getId());
 
         boolean rowDeleted = statement.executeUpdate() > 0;
         statement.close();
@@ -91,14 +91,14 @@ public class PaymentDao {
         return rowDeleted;
     }
 
-    public boolean updatePayment(Payment payment) throws SQLException {
-        String sql = "UPDATE shoppingcart.payment SET amount = ?";
-        sql += " WHERE idPayment = ?";
+    public boolean updateItem(Item item) throws SQLException {
+        String sql = "UPDATE shoppingcart.item SET nameItem = ?";
+        sql += " WHERE idItem = ?";
         connect();
 
         PreparedStatement statement = jdbcConnection.prepareStatement(sql);
-        statement.setFloat(1, payment.getAmount());
-        statement.setInt(2, payment.getId());
+        statement.setString(1, item.getName());
+        statement.setInt(2, item.getId());
 
         boolean rowUpdated = statement.executeUpdate() > 0;
         statement.close();
@@ -106,9 +106,9 @@ public class PaymentDao {
         return rowUpdated;
     }
 
-    public Payment getPayment(int id) throws SQLException {
-        Payment payment = null;
-        String sql = "SELECT * FROM shoppingcart.payment WHERE idPayment = ?";
+    public Item getItem(int id) throws SQLException {
+        Item item = null;
+        String sql = "SELECT * FROM shoppingcart.item WHERE idItem = ?";
 
         connect();
 
@@ -118,14 +118,14 @@ public class PaymentDao {
         ResultSet resultSet = statement.executeQuery();
 
         if (resultSet.next()) {
-            Float amount = Float.parseFloat(resultSet.getString("amount"));
+            String name = resultSet.getString("nameItem");
             int idOrder = resultSet.getInt("idOrder_fk");
-            payment = new Payment(id, amount, idOrder);
+            item = new Item(id, name, idOrder);
         }
 
         resultSet.close();
         statement.close();
 
-        return payment;
+        return item;
     }
 }
