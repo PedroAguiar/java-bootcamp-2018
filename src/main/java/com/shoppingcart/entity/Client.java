@@ -1,36 +1,36 @@
-package main.com.java.shoppingcart.entities;
+package com.shoppingcart.entity;
 
 public class Client {
     private Integer id;
     private String name;
-    private String lastname;
+    private String lastName;
     private String description;
 
     public Client(Integer id) {
         this.id = id;
     }
 
-    public Client(Integer id, String name, String lastname, String description) {
+    public Client(Integer id, String name, String lastName, String description) {
         this.id = id;
         this.name = name;
-        this.lastname = lastname;
+        this.lastName = lastName;
         this.description = description;
     }
 
-    public Client(Integer id, String name, String lastname) {
+    public Client(Integer id, String name, String lastName) {
         this.id = id;
         this.name = name;
-        this.lastname = lastname;
+        this.lastName = lastName;
     }
 
-    public Client(String name, String lastname) {
+    public Client(String name, String lastName) {
         this.name = name;
-        this.lastname = lastname;
+        this.lastName = lastName;
     }
 
-    public Client(String name, String lastname, String description) {
+    public Client(String name, String lastName, String description) {
         this.name = name;
-        this.lastname = lastname;
+        this.lastName = lastName;
         this.description = description;
     }
 
@@ -50,12 +50,12 @@ public class Client {
         this.name = name;
     }
 
-    public String getLastname() {
-        return lastname;
+    public String getLastName() {
+        return lastName;
     }
 
-    public void setLastname(String lastname) {
-        this.lastname = lastname;
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 
     public String getDescription() {

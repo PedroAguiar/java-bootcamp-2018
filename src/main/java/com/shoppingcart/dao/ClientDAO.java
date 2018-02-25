@@ -1,6 +1,6 @@
-package main.com.java.shoppingcart.dao;
+package com.shoppingcart.dao;
 
-import main.com.java.shoppingcart.entities.Client;
+import com.shoppingcart.entity.Client;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -11,6 +11,9 @@ public class ClientDAO {
     private String jdbcUsername;
     private String jdbcPassword;
     private Connection jdbcConnection;
+
+
+    private static String UPDATE_QUERY = "UPDATE client SET firstName = ?, lastName = ?, description = ? WHERE idClient = ?";
 
     public ClientDAO(String jdbcURL, String jdbcUsername, String jdbcPassword) {
         this.jdbcURL = jdbcURL;
@@ -40,7 +43,7 @@ public class ClientDAO {
         connect();
         PreparedStatement statement = jdbcConnection.prepareStatement(sql);
         statement.setString(1, client.getName());
-        statement.setString(2, client.getLastname());
+        statement.setString(2, client.getLastName());
         statement.setString(3, client.getDescription());
         boolean rowInserted = statement.executeUpdate() > 0;
         statement.close();
@@ -57,9 +60,9 @@ public class ClientDAO {
         while (resultSet.next()) {
             Integer id = resultSet.getInt("idClient");
             String name = resultSet.getString("firstName");
-            String lastname = resultSet.getString("lastName");
+            String lastName = resultSet.getString("lastName");
             String description = resultSet.getString("description");
-            Client client = new Client(id , name, lastname, description);
+            Client client = new Client(id , name, lastName, description);
             listClient.add(client);
         }
         resultSet.close();
@@ -85,15 +88,14 @@ public class ClientDAO {
     }
 
     public boolean updateClient(Client client) throws SQLException {
-        String sql = "UPDATE client SET firstName = ?, lastName = ?, description = ? WHERE idClient = ?";
 
         connect();
 
-        PreparedStatement statement = jdbcConnection.prepareStatement(sql);
-        statement.setInt(1, client.getId());
-        statement.setString(2, client.getName());
-        statement.setString(3, client.getLastname());
-        statement.setString(4, client.getDescription());
+        PreparedStatement statement = jdbcConnection.prepareStatement(UPDATE_QUERY);
+        statement.setString(1, client.getName());
+        statement.setString(2, client.getLastName());
+        statement.setString(3, client.getDescription());
+        statement.setInt(4, client.getId());
 
         boolean rowUpdated = statement.executeUpdate() > 0;
         statement.close();
@@ -116,10 +118,10 @@ public class ClientDAO {
 
         if (resultSet.next()) {
             String name = resultSet.getString("firstName");
-            String last_name = resultSet.getString("lastName");
+            String lastName = resultSet.getString("lastName");
             String description = resultSet.getString("description");
 
-            client = new Client(id, name, last_name, description);
+            client = new Client(id, name, lastName, description);
         }
 
         resultSet.close();

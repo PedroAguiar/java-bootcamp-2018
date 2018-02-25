@@ -3,8 +3,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <html>
 <head>
-    <title>Shopping Cart Application</title>
-    <!-- Latest compiled and minified CSS -->
+    <title>Shopping Cart Management</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
     <!-- Optional theme -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
@@ -33,39 +32,59 @@
 </nav>
 <div class="container" style="padding-top: 60px;">
     <div class="center-block">
-        <table border="1" cellpadding="20">
-            <caption>
-                <h2>List of Clients</h2>
-            </caption>
-            <tr>
-                <th>ID</th>
-                <th>Name</th>
-                <th>Last Name</th>
-                <th>Description</th>
-                <th>Actions</th>
-            </tr>
-            <c:forEach var="client" items="${listClient}">
+    <c:if test="${client != null}">
+    <form action="update" method="post">
+        </c:if>
+        <c:if test="${client == null}">
+        <form action="insert" method="post">
+            </c:if>
+            <table border="1" cellpadding="5">
+                <caption>
+                    <h2>
+                        <c:if test="${client != null}">
+                            Edit client
+                        </c:if>
+                        <c:if test="${client == null}">
+                            Add New client
+                        </c:if>
+                    </h2>
+                </caption>
+                <c:if test="${client != null}">
+                    <input type="hidden" name="id" value="<c:out value='${client.id}' />" />
+                </c:if>
                 <tr>
-                    <td><c:out value="${client.id}" /></td>
-                    <td><c:out value="${client.name}" /></td>
-                    <td><c:out value="${client.lastname}" /></td>
-                    <td><c:out value="${client.description}" /></td>
+                    <th>Title: </th>
                     <td>
-                        <a href="edit?id=<c:out value='${client.id}' />">Edit</a>
-                        &nbsp;&nbsp;&nbsp;&nbsp;
-                        <a href="delete?id=<c:out value='${client.id}' />">Delete</a>
-                        &nbsp;&nbsp;&nbsp;&nbsp;
-                        <a href="newOrder?id=<c:out value='${client.id}' />">Add new order</a>
-                        &nbsp;&nbsp;&nbsp;
-                        <a href="listOrder?id=<c:out value='${client.id}' />">View all Orders</a>
-                        &nbsp;&nbsp;&nbsp;
-                        <a href="listPayment?id=<c:out value='${client.id}' />">View all Payments</a>
+                        <input type="text" name="name" size="45"
+                               value="<c:out value='${client.name}' />"
+                        />
                     </td>
                 </tr>
-            </c:forEach>
-        </table>
+                <tr>
+                    <th>name: </th>
+                    <td>
+                        <input type="text" name="lastName" size="45"
+                               value="<c:out value='${client.lastName}' />"
+                        />
+                    </td>
+                </tr>
+                <tr>
+                    <th>description: </th>
+                    <td>
+                        <input type="text" name="description" size="100"
+                               value="<c:out value='${client.description}' />"
+                        />
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2" align="center">
+                        <input type="submit" value="Save" />
+                    </td>
+                </tr>
+            </table>
+        </form>
+        </div>
     </div>
-</div>
 <!-- /.container -->
 
 

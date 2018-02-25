@@ -20,11 +20,11 @@
 
   <context-param>
     <param-name>jdbcPassword</param-name>
-    <param-value>36925612</param-value>
+    <param-value>root</param-value>
   </context-param>
   <servlet>
     <servlet-name>ControllerServlet</servlet-name>
-    <servlet-class>main.com.java.shoppingcart.controllers.ControllerServlet</servlet-class>
+    <servlet-class>com.shoppingcart.servlet.ControllerServlet</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>ControllerServlet</servlet-name>

@@ -1,4 +1,9 @@
-package main.com.java.shoppingcart.controllers;
+package com.shoppingcart.servlet;
+
+import com.shoppingcart.controller.ClientController;
+import com.shoppingcart.controller.ItemController;
+import com.shoppingcart.controller.OrderController;
+import com.shoppingcart.controller.PaymentController;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;

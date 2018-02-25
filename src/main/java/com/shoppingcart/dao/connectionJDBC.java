@@ -1,4 +1,4 @@
-package main.com.java.shoppingcart.dao;
+package com.shoppingcart.dao;
 
 import java.sql.Connection;
 import java.sql.DriverManager;

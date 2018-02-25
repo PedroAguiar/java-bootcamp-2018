@@ -22,7 +22,7 @@
 <div style="text-align: center;">
     <h1>ShoppingCart Management</h1>
     <h2>
-        <a href="listOrder?id=<c:out value='${idClient}' />">All my Orders</a>
+        <a href="listOrder?idClient=<c:out value='${idClient}' />">All my Orders</a>
     </h2>
 </div>
 <div align="center">

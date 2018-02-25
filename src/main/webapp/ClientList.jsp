@@ -34,7 +34,7 @@
             <tr>
                 <td><c:out value="${client.id}" /></td>
                 <td><c:out value="${client.name}" /></td>
-                <td><c:out value="${client.lastname}" /></td>
+                <td><c:out value="${client.lastName}" /></td>
                 <td><c:out value="${client.description}" /></td>
                 <td>
                     <a href="edit?id=<c:out value='${client.id}' />">Edit</a>

@@ -1,22 +1,28 @@
-package main.com.java.shoppingcart.dao;
+package com.shoppingcart.dao;
 
-import main.com.java.shoppingcart.entities.Item;
-import main.com.java.shoppingcart.entities.Order;
+import com.shoppingcart.entity.Order;
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ItemDAO {
+public class OrderDAO {
     private String jdbcURL;
     private String jdbcUsername;
     private String jdbcPassword;
     private Connection jdbcConnection;
 
-    public ItemDAO(String jdbcURL, String jdbcUsername, String jdbcPassword) {
+    public OrderDAO(String jdbcURL, String jdbcUsername, String jdbcPassword) {
         this.jdbcURL = jdbcURL;
         this.jdbcUsername = jdbcUsername;
-        this.jdbcPassword = jdbcPassword;;
+        this.jdbcPassword = jdbcPassword;
+    }
+
+    public OrderDAO(String jdbcURL, String jdbcUsername, String jdbcPassword, Connection jdbcConnection) {
+        this.jdbcURL = jdbcURL;
+        this.jdbcUsername = jdbcUsername;
+        this.jdbcPassword = jdbcPassword;
+        this.jdbcConnection = jdbcConnection;
     }
 
     protected void connect() throws SQLException {
@@ -26,8 +32,7 @@ public class ItemDAO {
             } catch (ClassNotFoundException e) {
                 throw new SQLException(e);
             }
-            jdbcConnection = DriverManager.getConnection(
-                    jdbcURL, jdbcUsername, jdbcPassword);
+            jdbcConnection = DriverManager.getConnection(jdbcURL, jdbcUsername, jdbcPassword);
         }
     }
 
@@ -37,14 +42,12 @@ public class ItemDAO {
         }
     }
 
-    public boolean insertItem(Item item) throws SQLException {
-        String sql = "INSERT INTO item (name) VALUES ?";
-
+    public boolean insertOrder(Order order, int idClient) throws SQLException {
+        String sql = "INSERT INTO `order` (name, client_Orders_fk) VALUES (?,?)";
         connect();
-
         PreparedStatement statement = jdbcConnection.prepareStatement(sql);
-        statement.setString(1, item.getName());
-
+        statement.setString(1, order.getName());
+        statement.setInt(2, idClient);
 
         boolean rowInserted = statement.executeUpdate() > 0;
         statement.close();
@@ -54,22 +57,23 @@ public class ItemDAO {
         return rowInserted;
     }
 
-    public List<Item> listAllItems() throws SQLException {
-        List<Item> listItems = new ArrayList<>();
+    public List<Order> listAllOrders(Integer idClient) throws SQLException {
+        List<Order> listOrder = new ArrayList<>();
 
-        String sql = "SELECT * FROM client";
+        String sql = "SELECT * FROM `order` WHERE client_Orders_fk = ?";
 
         connect();
 
-        Statement statement = jdbcConnection.createStatement();
+        PreparedStatement statement = jdbcConnection.prepareStatement(sql);
+        statement.setInt(1, idClient);
         ResultSet resultSet = statement.executeQuery(sql);
 
         while (resultSet.next()) {
-            int id = resultSet.getInt("idItem");
+            int id = resultSet.getInt("idOrder");
             String name = resultSet.getString("name");
 
-            Item item = new Item(id , name);
-            listItems.add(item);
+            Order order = new Order(id , name);
+            listOrder.add(order);
         }
 
         resultSet.close();
@@ -77,16 +81,16 @@ public class ItemDAO {
 
         disconnect();
 
-        return listItems;
+        return listOrder;
     }
 
-    public boolean deleteItem(Item item) throws SQLException {
-        String sql = "DELETE FROM item where idItem = ?";
+    public boolean deleteOrder(Order order) throws SQLException {
+        String sql = "DELETE FROM `order` where idOrder = ?";
 
         connect();
 
         PreparedStatement statement = jdbcConnection.prepareStatement(sql);
-        statement.setInt(1, item.getId());
+        statement.setInt(1, order.getId());
 
         boolean rowDeleted = statement.executeUpdate() > 0;
         statement.close();
@@ -96,14 +100,14 @@ public class ItemDAO {
         return rowDeleted;
     }
 
-    public boolean updateItem(Item item) throws SQLException {
-        String sql = "UPDATE client SET firstName = ?, lastName = ?, description = ? WHERE idItem = ?";
+    public boolean updateOrder(Order order) throws SQLException {
+        String sql = "UPDATE `order` SET name = ? WHERE idOrder = ?";
 
         connect();
 
         PreparedStatement statement = jdbcConnection.prepareStatement(sql);
-        statement.setInt(1, item.getId());
-        statement.setString(2, item.getName());
+        statement.setString(1, order.getName());
+        statement.setInt(2, order.getId());
 
         boolean rowUpdated = statement.executeUpdate() > 0;
         statement.close();
@@ -113,9 +117,10 @@ public class ItemDAO {
         return rowUpdated;
     }
 
-    public Item getItem(int id) throws SQLException {
-        Item item = null;
-        String sql = "SELECT * FROM client WHERE idItem = ?";
+    public Order getOrder(int id) throws SQLException {
+        Order order = null;
+        String sql = "SELECT * FROM `order` WHERE idOrder = ?";
+
         connect();
 
         PreparedStatement statement = jdbcConnection.prepareStatement(sql);
@@ -124,11 +129,9 @@ public class ItemDAO {
         ResultSet resultSet = statement.executeQuery();
 
         if (resultSet.next()) {
-            String name = resultSet.getString("firstName");
-            String last_name = resultSet.getString("lastName");
-            String description = resultSet.getString("description");
+            String name = resultSet.getString("name");
 
-            item = new Item(id, name);
+            order = new Order(id, name);
         }
 
         resultSet.close();
@@ -136,7 +139,6 @@ public class ItemDAO {
 
         disconnect();
 
-        return item;
+        return order;
     }
 }
-
