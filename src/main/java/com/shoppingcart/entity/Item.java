@@ -1,4 +1,4 @@
-package main.com.java.shoppingcart.entities;
+package com.shoppingcart.entity;
 
 public class Item {
     private Integer id;

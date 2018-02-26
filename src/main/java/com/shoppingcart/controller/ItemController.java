@@ -1,7 +1,9 @@
-package main.com.java.shoppingcart.controllers;
+package com.shoppingcart.controller;
 
-import main.com.java.shoppingcart.dao.ItemDAO;
-import main.com.java.shoppingcart.entities.Item;
+
+
+import com.shoppingcart.dao.ItemDAO;
+import com.shoppingcart.entity.Item;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;

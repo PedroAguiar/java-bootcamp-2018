@@ -1,8 +1,11 @@
-package main.com.java.shoppingcart.controllers;
+package com.shoppingcart.controller;
 
 
-import main.com.java.shoppingcart.dao.OrderDAO;
-import main.com.java.shoppingcart.entities.Order;
+
+
+import com.shoppingcart.dao.ClientDAO;
+import com.shoppingcart.dao.OrderDAO;
+import com.shoppingcart.entity.Order;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -25,7 +28,7 @@ public class OrderController extends HttpServlet {
 
     public void showOptionForm(HttpServletRequest request, HttpServletResponse response)
             throws SQLException, ServletException, IOException {
-        int id = Integer.parseInt(request.getParameter("id"));
+        Integer id = Integer.parseInt(request.getParameter("id"));
         Order order = orderDAO.getOrder(id);
         RequestDispatcher dispatcher = request.getRequestDispatcher("menuOrder.jsp");
         request.setAttribute("order", order);
@@ -34,7 +37,7 @@ public class OrderController extends HttpServlet {
 
     public void listOrder(HttpServletRequest request, HttpServletResponse response)
             throws SQLException, IOException, ServletException {
-        int idClient = Integer.parseInt(request.getParameter("id"));
+        Integer idClient = Integer.valueOf(request.getParameter("idClient"));
         List<Order> listOrder = orderDAO.listAllOrders(idClient);
         request.setAttribute("listOrder", listOrder);
         RequestDispatcher dispatcher = request.getRequestDispatcher("listOrder.jsp");
@@ -43,18 +46,18 @@ public class OrderController extends HttpServlet {
 
     public void showNewForm(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        int idClient = Integer.parseInt(request.getParameter("id"));
-        request.setAttribute("idClient", ""+idClient);
+        Integer idClient = Integer.parseInt(request.getParameter("id"));
+        request.setAttribute("idClient", String.valueOf(idClient));
         RequestDispatcher dispatcher = request.getRequestDispatcher("newOrder.jsp");
         dispatcher.forward(request, response);
     }
 
     public void showEditForm(HttpServletRequest request, HttpServletResponse response)
             throws SQLException, ServletException, IOException {
-        int id = Integer.parseInt(request.getParameter("id"));
+        Integer id = Integer.valueOf(request.getParameter("id"));
         Order order = orderDAO.getOrder(id);
         request.setAttribute("order", order);
-        request.setAttribute("idClient", ""+order.getIdClient());
+        request.setAttribute("idClient", order.getIdClient());
         RequestDispatcher dispatcher = request.getRequestDispatcher("newOrder.jsp");
         dispatcher.forward(request, response);
     }
@@ -63,17 +66,17 @@ public class OrderController extends HttpServlet {
             throws SQLException, IOException {
         String name = request.getParameter("name");
         int idClient = Integer.parseInt(request.getParameter("idClient"));
-
+    
         Order newOrder = new Order(name, idClient);
-        orderDAO.insertOrder(newOrder);
+        orderDAO.insertOrder(newOrder, idClient);
         response.sendRedirect("listOrder");
     }
 
     public void update(HttpServletRequest request, HttpServletResponse response)
             throws SQLException, IOException {
-        int id = Integer.parseInt(request.getParameter("id"));
+        Integer id = Integer.valueOf(request.getParameter("id"));
         String name = request.getParameter("name");
-        int idClient = Integer.parseInt(request.getParameter("idClient"));
+        Integer idClient = Integer.valueOf(request.getParameter("idClient"));
 
         Order order = new Order(id, name, idClient);
         orderDAO.updateOrder(order);
@@ -82,7 +85,7 @@ public class OrderController extends HttpServlet {
 
     public void delete(HttpServletRequest request, HttpServletResponse response)
             throws SQLException, IOException {
-        int id = Integer.parseInt(request.getParameter("id"));
+        Integer id = Integer.valueOf(request.getParameter("id"));
         Order order = new Order(id);
         orderDAO.deleteOrder(order);
         response.sendRedirect("listOrder");

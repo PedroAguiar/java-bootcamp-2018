@@ -1,8 +1,9 @@
-package main.com.java.shoppingcart.dao;
+package com.shoppingcart.dao;
 
-import main.com.java.shoppingcart.entities.Client;
-import main.com.java.shoppingcart.entities.Order;
-import main.com.java.shoppingcart.entities.Payment;
+
+
+import com.shoppingcart.entity.Client;
+import com.shoppingcart.entity.Payment;
 
 import java.sql.*;
 import java.util.ArrayList;

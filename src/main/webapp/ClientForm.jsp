@@ -49,8 +49,8 @@
                 <tr>
                     <th>name: </th>
                     <td>
-                        <input type="text" name="name" size="45"
-                               value="<c:out value='${client.lastname}' />"
+                        <input type="text" name="lastName" size="45"
+                               value="<c:out value='${client.lastName}' />"
                         />
                     </td>
                 </tr>

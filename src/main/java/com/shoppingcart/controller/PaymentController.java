@@ -1,7 +1,7 @@
-package main.com.java.shoppingcart.controllers;
+package com.shoppingcart.controller;
 
-import main.com.java.shoppingcart.dao.PaymentDAO;
-import main.com.java.shoppingcart.entities.Payment;
+import com.shoppingcart.dao.PaymentDAO;
+import com.shoppingcart.entity.Payment;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
