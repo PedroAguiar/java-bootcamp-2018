@@ -1,4 +1,4 @@
-package main.java.Model;
+package com.homework.Model;
 
 public class Client {
     private int id;

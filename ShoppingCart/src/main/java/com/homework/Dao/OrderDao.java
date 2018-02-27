@@ -1,10 +1,13 @@
-package main.java.Dao;
+package com.homework.Dao;
 
-import main.java.Model.Order;
+
+
+import com.homework.Model.Order;
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
+
 
 public class OrderDao {
     private String jdbcURL;

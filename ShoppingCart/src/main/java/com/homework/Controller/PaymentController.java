@@ -1,7 +1,8 @@
-package main.java.Controller;
+package com.homework.Controller;
 
-import main.java.Dao.PaymentDao;
-import main.java.Model.Payment;
+import com.homework.Dao.PaymentDao;
+import com.homework.Model.Payment;
+
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;

@@ -1,11 +1,13 @@
-package main.java.Controller;
+package com.homework.Controller;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.Properties;
 
 /**
  * ControllerServlet.java
@@ -15,20 +17,43 @@ import java.sql.SQLException;
  * @lastName www.codejava.net
  */
 public class ControllerServlet extends HttpServlet {
+
     private static final long serialVersionUID = 1L;
-    private String jdbcURL = "";
-    private String jdbcUsername = "";
-    private String jdbcPassword = "";
+    private static final String DATABASE_URL_PROPERTY_KEY = "database.url";
+    private static final String DATABASE_USERNAME_PROPERTY_KEY = "database.username";
+    private static final String DATABASE_PASSWORD_PROPERTY_KEY = "database.password";
+
+    private String jdbcURL;
+    private String jdbcUsername;
+    private String jdbcPassword;
+
     private ClientController clientCont = new ClientController();
     private OrderController orderCont = new OrderController();
     private ItemController itemCont = new ItemController();
     private PaymentController paymentCont = new PaymentController();
 
-    public void init() {
-        jdbcURL = getServletContext().getInitParameter("jdbcURL");
-        jdbcUsername = getServletContext().getInitParameter("jdbcUsername");
-        jdbcPassword = getServletContext().getInitParameter("jdbcPassword");
+
+    public ControllerServlet() {
+        Properties properties = new Properties();
+        try {
+            ClassLoader loader = Thread.currentThread().getContextClassLoader();
+            properties.load(loader.getResourceAsStream("application.properties"));
+        } catch (FileNotFoundException e) {
+            System.out.println("Could not find application properties file");
+        } catch (IOException e) {
+            System.out.println("Error trying to read application properties");
+        }
+
+        jdbcURL = properties.getProperty(DATABASE_URL_PROPERTY_KEY);
+        jdbcUsername = properties.getProperty(DATABASE_USERNAME_PROPERTY_KEY);
+        jdbcPassword =  properties.getProperty(DATABASE_PASSWORD_PROPERTY_KEY);
+
+        // get the property value and print it out
+        System.out.println("Successfully loaded database url= " + properties.getProperty(DATABASE_URL_PROPERTY_KEY));
+        System.out.println("Successfully loaded database username= " + properties.getProperty(DATABASE_USERNAME_PROPERTY_KEY));
+        System.out.println("Successfully loaded database password= " + properties.getProperty(DATABASE_PASSWORD_PROPERTY_KEY));
     }
+
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {

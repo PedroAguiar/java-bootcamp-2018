@@ -1,4 +1,4 @@
-package main.java.Dao;
+package com.homework.Dao;
 
 import java.sql.Connection;
 import java.sql.SQLException;
