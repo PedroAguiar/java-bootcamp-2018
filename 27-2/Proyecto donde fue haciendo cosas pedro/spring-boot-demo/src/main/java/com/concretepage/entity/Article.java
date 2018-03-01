@@ -20,7 +20,7 @@ public class Article implements Serializable {
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	@GenericGenerator(strategy = ResourceProperties.Strategy)
 	@Column(name="article_id")
-    private int articleId;  
+    private in	t articleId;
 	@Column(name="title")
     private String title;
 	@Column(name="category")	
