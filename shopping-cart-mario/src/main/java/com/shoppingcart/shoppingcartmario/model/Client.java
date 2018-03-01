@@ -2,22 +2,19 @@ package com.shoppingcart.shoppingcartmario.model;
 
 import lombok.Data;
 import javax.persistence.*;
-import java.io.Serializable;
 
 
 @Entity
-@Table(name="clients")
-@Data public class Client implements Serializable{
-
-    private static final long serialVersionUID = 1L;
+@Table(name="client")
+@Data public class Client {
 
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)   //@GenericGenerator(strategy = GenerationType.AUTO)
-    @Column(name="idClient")
-    private int id;
-    @Column(name="firstName")
+    @Column(name="client_id")
+    private int idClient;
+    @Column(name="first_name")
     private String firstName;
-    @Column(name="lastName")
+    @Column(name="last_name")
     private String lastName;
     @Column(name="description")
     private String description;

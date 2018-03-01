@@ -23,7 +23,7 @@ public class ClientRepositoryImp implements ClientRepository {
     @SuppressWarnings("unchecked")
     @Override
     public List<Client> getAllClients() {
-        String hql = "FROM Client as client ORDER BY client.idClient";
+        String hql = "FROM client ORDER BY client.client_id";
         return (List<Client>) entityManager.createQuery(hql).getResultList();
     }
 
@@ -34,7 +34,7 @@ public class ClientRepositoryImp implements ClientRepository {
 
     @Override
     public void updateClient(Client client) {
-        Client cli = getClientById(client.getId());//ASK
+        Client cli = getClientById(client.getIdClient());//ASK
         cli.setFirstName(client.getFirstName());
         cli.setLastName(client.getLastName());
         entityManager.flush();
@@ -47,7 +47,7 @@ public class ClientRepositoryImp implements ClientRepository {
 
     @Override
     public boolean clientExists(String firstName, String lastName, String description) {
-        String hql = "FROM Client as client WHERE client.firstName = ? and client.lastName = ? and client.description = ?";
+        String hql = "FROM client WHERE client.first_name = ? and client.last_name = ? and client.description = ? ";
         int count = entityManager.createQuery(hql).setParameter(1, firstName)
                 .setParameter(2, lastName).setParameter(3,description).getResultList().size();
         return count > 0 ? true : false;

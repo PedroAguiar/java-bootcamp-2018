@@ -36,7 +36,7 @@ public class ClientController {
             return new ResponseEntity<>(HttpStatus.CONFLICT);
         }
         HttpHeaders headers = new HttpHeaders();
-        headers.setLocation(builder.path("/client/{id}").buildAndExpand(client.getId()).toUri());
+        headers.setLocation(builder.path("/client/{id}").buildAndExpand(client.getIdClient()).toUri());
         return new ResponseEntity<>(headers, HttpStatus.CREATED);
     }
     @PutMapping("/client")
