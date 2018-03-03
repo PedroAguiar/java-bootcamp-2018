@@ -1,12 +1,21 @@
-package entity;
+package com.prueba.springboot2.entity;
+
+
 
 import javax.persistence.*;
+import org.hibernate.validator.constraints.NotBlank;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
+
+import java.io.Serializable;
+import java.util.Date;
 
 
 @Entity
 @Table(name="Clients")
-
-public class Client {
+public class Client  {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id")
@@ -20,6 +29,7 @@ public class Client {
     @Column(name = "deleted")
     private Boolean deleted;
 
+
     public Client(){
 
     }
@@ -32,35 +42,35 @@ public class Client {
     }
 
 
-    public long getId() {
+    public long getClientId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setClientId(long id) {
         this.id = id;
     }
 
-    public String getName() {
+    public String getClientName() {
         return name;
     }
 
-    public void setName(String name) {
+    public void setClientName(String name) {
         this.name = name;
     }
 
-    public String getLastName() {
+    public String getClientLastName() {
         return lastName;
     }
 
-    public void setLastName(String lastName) {
+    public void setClientLastName(String lastName) {
         this.lastName = lastName;
     }
 
-    public String getDescription() {
+    public String getClientDescription() {
         return description;
     }
 
-    public void setDescription(String description) {
+    public void setClientDescription(String description) {
         this.description = description;
     }
 
@@ -71,6 +81,16 @@ public class Client {
     public void setDeleted(Boolean deleted) {
         this.deleted = deleted;
     }
+
+    @Override
+    public String toString() {
+        return "Client{" +
+                ", name='" + name + '\'' +
+                ", lastName=" + lastName +
+                '}';
+    }
+
+
 }
 
 
