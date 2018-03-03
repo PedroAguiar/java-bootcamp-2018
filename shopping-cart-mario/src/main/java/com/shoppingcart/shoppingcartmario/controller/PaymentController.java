@@ -1,5 +1,6 @@
 package com.shoppingcart.shoppingcartmario.controller;
 
+import com.shoppingcart.shoppingcartmario.dto.PaymentDTO;
 import com.shoppingcart.shoppingcartmario.model.Payment;
 import com.shoppingcart.shoppingcartmario.service.PaymentService;
 import org.apache.commons.lang3.Validate;
@@ -46,8 +47,9 @@ public class PaymentController {
 
         //Logging example, the value of '{}' gets filled with the output of payment.toString()
         LOGGER.info("Adding payment {} ", payment.toString());
+        PaymentDTO paymentDTO = new PaymentDTO(77, clientId, payment.getAmount(), orderId);
 
-        final Payment persistedPayment = paymentService.createPayment(payment, orderId, clientId);
+        final Payment persistedPayment = paymentService.createPayment(paymentDTO);
         Validate.notNull(persistedPayment);
 
         return new ResponseEntity<>(persistedPayment, HttpStatus.CREATED);

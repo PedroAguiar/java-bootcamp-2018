@@ -10,9 +10,9 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class PaymentDTO {
-    private Integer paymentId;
+    private Integer id;
     private Integer clientId;
     private String amount;
-    private Integer orderId;
+    private Integer pedidoId;
 
 }

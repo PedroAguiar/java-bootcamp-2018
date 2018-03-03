@@ -22,7 +22,7 @@ public class Payment {
     private String amount;
     @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name="PEDIDO_ID", foreignKey = @ForeignKey(name="Fk_Payment_Pedido"))
-    private Order pedido;
+    private Order order;
 
 //    public Payment(String amount, Client client, Order pedido) {
 //        this.amount = amount;

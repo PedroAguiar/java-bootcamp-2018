@@ -44,9 +44,9 @@ public class PaymentServiceImpl implements PaymentService {
     @Override
     public Payment createPayment(PaymentDTO paymentDTO) {
         Validate.notNull(paymentDTO);
-        final Order order = orderRepository.getOne((paymentDTO.getOrderId()));
+        final Order order = orderRepository.getOne((paymentDTO.getPedidoId()));
         final Payment payment = Payment.builder()
-                .pedido(order)
+                .order(order)
                 .amount(paymentDTO.getAmount())
                 .build();
         return paymentRepository.save(payment);
