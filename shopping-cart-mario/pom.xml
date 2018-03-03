@@ -59,6 +59,11 @@
 			<artifactId>commons-lang3</artifactId>
 			<version>${apache-commons.version}</version>
 		</dependency>
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-core</artifactId>
+			<version>5.0.7.Final</version>
+		</dependency>
 	</dependencies>
 
 	<build>

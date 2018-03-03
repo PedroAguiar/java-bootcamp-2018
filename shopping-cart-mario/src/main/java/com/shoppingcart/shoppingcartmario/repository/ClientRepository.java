@@ -12,12 +12,10 @@ import java.util.List;
 //out-of-the box functionalities like the ones you had implemented
 public interface ClientRepository extends JpaRepository<Client, Integer> {
 
-
     Client findByFirstNameAndLastNameAndDescription(String firstName, String lastName, String description);
 
     @Modifying
     @Query("UPDATE Client SET firstName = :firstName, lastName = :lastName, description = :description WHERE id = :clientId")
     void update(@Param("firstName") String firstName, @Param("lastName")String lastName,
                 @Param("description")String description, @Param("clientId") Integer clientId);
-
 }
