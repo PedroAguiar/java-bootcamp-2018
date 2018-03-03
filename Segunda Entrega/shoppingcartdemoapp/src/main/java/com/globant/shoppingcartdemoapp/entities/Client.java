@@ -16,12 +16,16 @@ public class Client {
     private int id;
     private String name;
     private String lastName;
-    private String desription;
+    private String description;
 
-    @OneToMany
-    private List<Payment> payments;
+    @OneToMany( cascade = CascadeType.ALL)
+    private List<Payment> payment;
 
     public Client() {
-        this.payments = new ArrayList<>();
+        this.payment = new ArrayList<>();
+    }
+
+    public String toString() {
+        return "";
     }
 }

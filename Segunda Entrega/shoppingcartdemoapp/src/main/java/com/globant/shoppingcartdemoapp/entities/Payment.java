@@ -1,7 +1,7 @@
 package com.globant.shoppingcartdemoapp.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
-import org.springframework.stereotype.Component;
 
 import javax.persistence.*;
 
@@ -17,11 +17,20 @@ public class Payment {
     private float amount;
 
 
-    @OneToOne
-    private Order order;
+    @OneToOne( cascade = CascadeType.ALL)
+    private ShoppingOrder shoppingOrder;
 
     @ManyToOne
     private Client client;
+
+    public Payment(){
+        this.shoppingOrder = null;
+    }
+
+    @JsonIgnore
+    public Client getClient(){
+        return this.client;
+    }
 
 
 }

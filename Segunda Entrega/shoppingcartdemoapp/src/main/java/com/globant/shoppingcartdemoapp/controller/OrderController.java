@@ -2,14 +2,11 @@ package com.globant.shoppingcartdemoapp.controller;
 
 
 import com.globant.shoppingcartdemoapp.entities.Item;
-import com.globant.shoppingcartdemoapp.entities.Order;
+import com.globant.shoppingcartdemoapp.entities.ShoppingOrder;
 import com.globant.shoppingcartdemoapp.entities.Payment;
 import com.globant.shoppingcartdemoapp.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import com.globant.shoppingcartdemoapp.repository.*;
-
-import java.util.List;
 
 @RestController
 public class OrderController {
@@ -22,11 +19,12 @@ public class OrderController {
     private PaymentService paymentService;
 
 
-    @RequestMapping(value="/client/{idClient}/payment/{idPayment}/order", method = RequestMethod.POST)
-    public void addOrder(@RequestBody Order order, @PathVariable int idPayment) {
+    @RequestMapping(value="/client/{idClient}/payment/{idPayment}/orders", method = RequestMethod.POST)
+    public void addOrder(@RequestBody ShoppingOrder shoppingOrder, @PathVariable int idPayment) {
         Payment p = paymentService.getPayment(idPayment);
-        p.setOrder(order);
-        orderService.addOrder(order);
+        p.setShoppingOrder(shoppingOrder);
+        orderService.addOrder(shoppingOrder);
+
     }
 
     @RequestMapping(value="/client/{idClient}/payment/{idPayment}/order/{idOrder}/item/{idItem}",method = RequestMethod.POST)
@@ -34,20 +32,20 @@ public class OrderController {
     public void addItemToOrder(@PathVariable int idOrder, @PathVariable int idItem) {
 
        Item i = itemService.getItem(idItem);
-       Order o = orderService.getOrder(idOrder);
+       ShoppingOrder o = orderService.getOrder(idOrder);
 
-       o.getItems().add(i);
+       o.getItem().add(i);
 
     }
 
     @RequestMapping(value="client/{idClient}/payment/{idPayment}/order/{orderId}",method = RequestMethod.GET)
-    public Order getOrder(@PathVariable int orderId) {
+    public ShoppingOrder getOrder(@PathVariable int orderId) {
         return orderService.getOrder(orderId);
     }
 
     @RequestMapping(value="client/{idClient}/payment/{idPayment}/order",method = RequestMethod.PUT)
-    public void updateOrder(@PathVariable Order order) {
-        orderService.updateOrder(order);
+    public void updateOrder(@PathVariable ShoppingOrder shoppingOrder) {
+        orderService.updateOrder(shoppingOrder);
     }
 
     @RequestMapping(value="client/{idClient}/payment/{idPayment}/order/{orderId}",method = RequestMethod.DELETE)

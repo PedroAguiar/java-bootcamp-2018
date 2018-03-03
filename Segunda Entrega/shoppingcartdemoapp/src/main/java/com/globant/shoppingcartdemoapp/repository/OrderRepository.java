@@ -1,9 +1,15 @@
 package com.globant.shoppingcartdemoapp.repository;
 
-import com.globant.shoppingcartdemoapp.entities.Order;
+import com.globant.shoppingcartdemoapp.entities.Client;
+import com.globant.shoppingcartdemoapp.entities.ShoppingOrder;
 import org.springframework.data.repository.CrudRepository;
 
-public interface OrderRepository extends CrudRepository<Order,Integer> {
+import javax.persistence.criteria.Order;
 
-    Order getById(int orderId);
+public interface OrderRepository extends CrudRepository<ShoppingOrder,Integer> {
+
+    ShoppingOrder getById(int orderId);
+
 }
+
+

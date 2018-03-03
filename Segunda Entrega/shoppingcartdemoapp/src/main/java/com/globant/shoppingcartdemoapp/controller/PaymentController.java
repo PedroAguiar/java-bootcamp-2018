@@ -18,7 +18,7 @@ public class PaymentController {
     @RequestMapping(value="/client/{clientId}/payment",method = RequestMethod.POST)
     public void addPayment(@RequestBody Payment payment, @PathVariable int clientId) {
         Client c = clientService.getClient(clientId);
-        c.getPayments().add(payment);
+        c.getPayment().add(payment);
         payment.setClient(c);
 
         paymentService.add(payment);
@@ -38,9 +38,9 @@ public class PaymentController {
     public void updatePayment(@RequestBody Payment payment, @PathVariable int clientId) {
 
         Client c = clientService.getClient(clientId);
-        for(int i = 0 ; i < c.getPayments().size() ; i++) {
-            if(c.getPayments().get(i).getId() == clientId) {
-                c.getPayments().add(i,payment);
+        for(int i = 0 ; i < c.getPayment().size() ; i++) {
+            if(c.getPayment().get(i).getId() == clientId) {
+                c.getPayment().add(i,payment);
             }
         }
         paymentService.updatePayment(payment);
@@ -50,9 +50,9 @@ public class PaymentController {
     public void deletePayment(@PathVariable int paymentId, @PathVariable int clientId) {
 
         Client c = clientService.getClient(clientId);
-        for(int i = 0 ; i < c.getPayments().size() ; i++) {
-            if(c.getPayments().get(i).getId() == clientId) {
-                c.getPayments().remove(i);
+        for(int i = 0 ; i < c.getPayment().size() ; i++) {
+            if(c.getPayment().get(i).getId() == clientId) {
+                c.getPayment().remove(i);
             }
         }
         paymentService.deletePayment(paymentId);
