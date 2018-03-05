@@ -23,7 +23,6 @@ public class Client {
     private String lastName;
     private String description;
     @OneToMany(cascade=CascadeType.ALL, orphanRemoval=true)
-    @JoinColumn(foreignKey = @ForeignKey(name="Fk_Payments"), name="payment_id")
+    @JoinColumn(foreignKey = @ForeignKey(name="Fk_Client_Payments"), name="client_id")
     private List<Payment> payments;
-
 }

@@ -42,13 +42,15 @@ public class PaymentController {
         return new ResponseEntity<>(list, HttpStatus.OK);
     }
 
-    @PostMapping(value = "client/{clientId}/order/{orderId}/payment", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Payment> addPayment(@PathVariable("orderId") Integer orderId, @PathVariable("clientId") Integer clientId, @RequestBody Payment payment) {
+    @PostMapping(value = "{clientId}/order/{orderId}/payment", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<Payment> addPayment(@PathVariable("clientId") Integer clientId,
+                                              @PathVariable("orderId") Integer orderId,
+                                              @RequestBody Payment payment) {
 
         //Logging example, the value of '{}' gets filled with the output of payment.toString()
         LOGGER.info("Adding payment {} ", payment.toString());
-        PaymentDTO paymentDTO = new PaymentDTO(77, clientId, payment.getAmount(), orderId);
-
+        PaymentDTO paymentDTO = new PaymentDTO(1, clientId, payment.getAmount());
+        LOGGER.info("Adding paymentDTO {} ", paymentDTO.toString());
         final Payment persistedPayment = paymentService.createPayment(paymentDTO);
         Validate.notNull(persistedPayment);
 

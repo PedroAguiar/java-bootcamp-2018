@@ -20,14 +20,14 @@ public class PaymentServiceImpl implements PaymentService {
 
     private final PaymentRepository paymentRepository;
     private final OrderRepository orderRepository;
-//    private final ClientRepository clientRepository;
+    private final ClientRepository clientRepository;
 
     @Autowired
-    public PaymentServiceImpl(PaymentRepository paymentRepository, OrderRepository orderRepository) {
+    public PaymentServiceImpl(PaymentRepository paymentRepository, OrderRepository orderRepository, ClientRepository clientRepository) {
         this.paymentRepository = paymentRepository;
         this.orderRepository = orderRepository;
+        this.clientRepository = clientRepository;
     }
-
 
     @Override
     public Payment createPayment(Payment payment) {
@@ -44,7 +44,8 @@ public class PaymentServiceImpl implements PaymentService {
     @Override
     public Payment createPayment(PaymentDTO paymentDTO) {
         Validate.notNull(paymentDTO);
-        final Order order = orderRepository.getOne((paymentDTO.getPedidoId()));
+        final Order order = orderRepository.getOne((paymentDTO.getOrderId()));
+//        final Client client = clientRepository.getOne((paymentDTO.getClientId()));
         final Payment payment = Payment.builder()
                 .order(order)
                 .amount(paymentDTO.getAmount())

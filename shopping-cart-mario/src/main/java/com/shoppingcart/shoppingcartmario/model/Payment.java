@@ -19,10 +19,10 @@ public class Payment {
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
     private Integer id;
-    private String amount;
     @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name="PEDIDO_ID", foreignKey = @ForeignKey(name="Fk_Payment_Pedido"))
     private Order order;
+    private String amount;
 
 //    public Payment(String amount, Client client, Order pedido) {
 //        this.amount = amount;
