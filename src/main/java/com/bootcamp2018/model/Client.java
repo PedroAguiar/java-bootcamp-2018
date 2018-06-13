@@ -1,4 +1,4 @@
-package com.bootcamp2018.Model;
+package com.bootcamp2018.model;
 
 import java.util.ArrayList;
 

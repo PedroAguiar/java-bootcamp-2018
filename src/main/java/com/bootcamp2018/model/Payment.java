@@ -1,4 +1,4 @@
-package com.bootcamp2018.Model;
+package com.bootcamp2018.model;
 
 public class Payment {
     private int Id;
