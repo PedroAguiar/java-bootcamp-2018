@@ -3,7 +3,7 @@ package com.bootcamp2018;
 import com.bootcamp2018.dao.*;
 
 import com.bootcamp2018.model.*;
-
+import com.bootcamp2018.service.ItemService;
 
 
 import java.util.ArrayList;
@@ -19,7 +19,7 @@ public class Main {
         ItemDAO itemDAO = new ItemDAO();
         Scanner scanner = new Scanner(System.in);
         ArrayList<Item> listOfItems;
-
+        ItemService is;
         try {
                 while (op != 3){
                     System.out.println("Menu");
@@ -67,11 +67,13 @@ public class Main {
                                                                             String prices = scanner.next();
                                                                             if (isDouble(prices)){
                                                                                 double price = Double.parseDouble(prices);
-                                                                                ban = itemDAO.createItem(new Item(name,price));
-                                                                                if (!ban) {
+                                                                                is = new ItemService();
+                                                                                Item created = is.create(new Item(name,price));
+                                                                                if (created == null) {
                                                                                     System.out.println("Error");
-                                                                                    ban= true;
                                                                                 }
+                                                                                ban= true;
+
                                                                             }else{
                                                                                 System.out.println("Please enter a valid value.");
                                                                             }
@@ -83,7 +85,8 @@ public class Main {
                                                                 break;
                                                             case 2:
                                                                     System.out.println("List of Items: ");
-                                                                    listOfItems = itemDAO.retriveItems();
+                                                                    is = new ItemService();
+                                                                    listOfItems = is.getList(new Item());
                                                                     for (Item i: listOfItems
                                                                          ) {
                                                                         System.out.println(i.toString());
@@ -94,7 +97,7 @@ public class Main {
                                                                 ban = false;
                                                                 while (!ban) {
                                                                     System.out.println("List of Items: ");
-                                                                    listOfItems = itemDAO.retriveItems();
+                                                                    listOfItems = itemDAO.retriveItems(new Item());
                                                                     for (Item i : listOfItems
                                                                             ) {
                                                                         System.out.println(i.toString());
@@ -114,8 +117,9 @@ public class Main {
                                                                                     if (isDouble(prices)){
 
                                                                                         updateItem.setPrice(Double.parseDouble(prices));
+                                                                                        is = new ItemService();
+                                                                                        is.update(updateItem);
 
-                                                                                        ban = itemDAO.updateItem(updateItem);
                                                                                         if (!ban) {
                                                                                             System.out.println("Error");
                                                                                             ban= true;

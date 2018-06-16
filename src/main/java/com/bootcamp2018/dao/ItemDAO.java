@@ -31,21 +31,16 @@ public class ItemDAO {
 
         return item;
     }
-    public ArrayList<Item>  retriveItems() throws SQLException {
+    public ArrayList<Item>  retriveItems(Item objects) {
         ArrayList<Item> list = new ArrayList<>();
         try (Connection con = DBConnection.getInstance().getDataSource().getConnection()){
             PreparedStatement pstmt;
             pstmt = con.prepareStatement("SELECT idItem, name, price FROM item");
-
             ResultSet rs = pstmt.executeQuery();
             while (rs.next()) {
                 list.add(new Item(rs.getInt(1), rs.getString(2), rs.getDouble(3)));
             }
-
-
-        } catch (Exception e) {
-
-        }
+        } catch (Exception e) {}
 
         return list;
 
@@ -60,10 +55,8 @@ public class ItemDAO {
             while (rs.next()) {
                 list= new Item(rs.getInt(1), rs.getString(2), rs.getDouble(3));
             }
-        } catch (Exception e) {
-        }
+        } catch (Exception e) {}
         return list;
-
     }
 
 
