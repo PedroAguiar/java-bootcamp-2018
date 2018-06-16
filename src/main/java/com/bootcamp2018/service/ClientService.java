@@ -26,8 +26,8 @@ public class ClientService implements Service<Client> {
     }
 
     @Override
-    public Client delete(Client Object) {
-        return null;
+    public void delete(Client Object) {
+
     }
     //DTO class  ver patron
 }

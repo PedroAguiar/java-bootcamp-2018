@@ -14,7 +14,15 @@ public class Client {
         this.name = "";
         this.lastName = "";
         this.description = "";
-        this.Payments = new ArrayList<Payment>();
+        this.Payments = new ArrayList<>();
+    }
+
+    public Client() {
+        this.id = 0;
+        this.name = "";
+        this.lastName = "";
+        this.description = "";
+        this.Payments = new ArrayList<>();
     }
 
     public Client(int id, String name, String lastName, String description) {
@@ -22,7 +30,7 @@ public class Client {
         this.name = name;
         this.lastName = lastName;
         this.description = description;
-        Payments = new ArrayList<Payment>();
+        Payments = new ArrayList<>();
     }
 
     public int getId() {

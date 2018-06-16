@@ -11,10 +11,7 @@ public class ItemDAO {
 
 
 
-    public boolean createItem(Item item) {
-
-
-        boolean ban = true;
+    public Item createItem(Item item) {
         try(Connection con = DBConnection.getInstance().getDataSource().getConnection()) {
             PreparedStatement pstmt;
             pstmt = con.prepareStatement("INSERT INTO item (Name,Price) VALUES (?,?)",Statement.RETURN_GENERATED_KEYS);
@@ -25,14 +22,14 @@ public class ItemDAO {
             if (rs.next()) {
                 item.setId(rs.getInt(1));
             } else {
-                ban = false;
+                item = new Item();
             }
             pstmt.close();
         } catch (Exception e){
-            ban = false;
+
         }
 
-        return ban;
+        return item;
     }
     public ArrayList<Item>  retriveItems() throws SQLException {
         ArrayList<Item> list = new ArrayList<>();
@@ -53,22 +50,40 @@ public class ItemDAO {
         return list;
 
     }
-    public boolean deleteItem(Item item) throws SQLException {
-        boolean ban = true;
+    public Item  retriveItem(int id) throws SQLException {
+        Item  list = new Item();
+        try (Connection con = DBConnection.getInstance().getDataSource().getConnection()){
+            PreparedStatement pstmt;
+            pstmt = con.prepareStatement("SELECT idItem, name, price FROM item");
+
+            ResultSet rs = pstmt.executeQuery();
+            while (rs.next()) {
+                list= new Item(rs.getInt(1), rs.getString(2), rs.getDouble(3));
+            }
+        } catch (Exception e) {
+        }
+        return list;
+
+    }
+
+
+
+    public void deleteItem(Item item) throws SQLException {
+
         try (Connection con = DBConnection.getInstance().getDataSource().getConnection()) {
             PreparedStatement pstmt;
             pstmt = con.prepareStatement("DELETE FROM item WHERE idItem = ?");
             pstmt.setInt(1, item.getId());
-            int resp = pstmt.executeUpdate();
-            if (resp == 0) ban = false;
+            pstmt.executeUpdate();
+
 
         } catch (Exception e) {
-            ban = false;
+
         }
-        return ban;
+
     }
-    public boolean updateItem(Item item) throws SQLException {
-        boolean ban = true;
+    public Item updateItem(Item item) throws SQLException {
+
         try(Connection con = DBConnection.getInstance().getDataSource().getConnection()) {
             PreparedStatement pstmt;
             pstmt = con.prepareStatement("UPDATE item SET name = ?, price= ? WHERE idItem= ?");
@@ -77,12 +92,12 @@ public class ItemDAO {
             pstmt.setInt(3, item.getId());
 
             int resp = pstmt.executeUpdate();
-            if (resp == 0) ban = false;
+            if (resp == 0) item = new Item();
 
         } catch (Exception e) {
-            ban = false;
+            item = new Item();
         }
-        return ban;
+        return item;
     }
 // CRear clase que con ReturnSet me de el objeto que yo toque o la lista de objetos que yo toque;
 }

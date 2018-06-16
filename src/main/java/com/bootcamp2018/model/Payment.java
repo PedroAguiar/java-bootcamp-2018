@@ -35,9 +35,15 @@ public class Payment {
 
 
     public Payment(int id, Order order, double amount) {
-        Id = id;
+        this.Id = id;
         this.order = order;
         this.amount = amount;
+    }
+
+    public Payment() {
+        this.Id = 0;
+        this.order = new Order();
+        this.amount = 0;
     }
 
     @Override
