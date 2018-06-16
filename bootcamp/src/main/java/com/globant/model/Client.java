@@ -1,26 +1,29 @@
 package com.globant.model;
 
-public class Client { private int id;
+import java.util.ArrayList;
+
+public class Client { private int id_client;
     private String name;
     private String surmane;
     private String description;
-    private Payment payment;
 
-    public Client(int id, String name, String surname, String descriprion, Payment pyment){
-        this.id = id;
+    private ArrayList<Payment> PaymentArrayList;
+
+    public Client(int id_client, String name, String surname, String descriprion ){
+        this.id_client = id_client;
         this.name = name;
         this.surmane = surname;
         this.description = description;
-        this.payment = payment;
+
 
     }
 
-    public void setId( int id ) {
-        this.id = id;
+    public void setId( int id_cliente ) {
+        this.id_client = id_client;
     }
 
     public int getId() {
-        return id;
+        return this.id_client;
     }
 
     public void setName( String name ) {
@@ -47,11 +50,15 @@ public class Client { private int id;
         return description;
     }
 
-    public void setPayment( Payment payment ) {
-        this.payment = payment;
-    }
 
-    public Payment getPayment() {
-        return payment;
+
+    @Override
+    public String toString() {
+        return "Client{" +
+                "id_client" + id_client +
+                ", name='" + name + '\'' +
+                ", surmane='" + surmane + '\'' +
+                ", description='" + description + '\'' +
+                '}';
     }
 }

@@ -1,11 +1,13 @@
 package com.globant.model;
 
-public class Order {private int id;
-    private Item item;
+import java.util.ArrayList;
 
+public class Order {private int id;
+
+    private ArrayList<Item> PaymentArrayList;
     public Order(int id, Item item){
         this.id = id;
-        this.item = item;
+
 
     }
 
@@ -17,11 +19,13 @@ public class Order {private int id;
         return id;
     }
 
-    public void setItem( Item item ) {
-        this.item = item;
-    }
 
-    public Item getItem() {
-        return item;
+
+    @Override
+    public String toString() {
+        return "Order{" +
+                "id=" + id +
+
+                '}';
     }
 }

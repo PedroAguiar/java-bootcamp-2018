@@ -1,21 +1,22 @@
 package com.globant.model;
 
-public class Payment { private int id;
+import java.util.ArrayList;
+
+public class Payment { private int id_payment;
     private Order order;
     private float amount;
-
-    public Payment(int id, Order order, float amount){
-        this.id = id;
+    public Payment(int id_payment, Order order, float amount){
+        this. id_payment= id_payment;
         this.order = order;
         this.amount = amount;
     }
 
-    public void setId( int id ) {
-        this.id = id;
+    public void setId( int id_payment ) {
+        this.id_payment =id_payment ;
     }
 
-    public int getId() {
-        return id;
+    public int getid_payment() {
+        return id_payment;
     }
 
     public void setOrder( Order order ) {
@@ -32,5 +33,14 @@ public class Payment { private int id;
 
     public float getAmount() {
         return amount;
+    }
+
+    @Override
+    public String toString() {
+        return "Payment{" +
+                "id_payment=" + id_payment +
+                ", order=" + order +
+                ", amount=" + amount +
+                '}';
     }
 }
