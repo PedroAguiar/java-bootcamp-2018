@@ -1,11 +1,11 @@
 package com.globant.dao;
 
-import com.globant.Service.ServiceClient;
+import com.globant.service.Service;
 import com.globant.model.Client;
 
 import java.util.List;
 
-public class OrderDAO implements ServiceClient{
+public class OrderDAO implements Service <Client> {
     public Client create( Client object ) {
         return null;
     }

@@ -1,11 +1,11 @@
 package com.globant.dao;
 
-import com.globant.Service.ServiceItem;
+import com.globant.service.Service;
 import com.globant.model.Item;
 
 import java.util.List;
 
-public class ItemDAO implements ServiceItem {
+public class ItemDAO implements Service <Item> {
     public Item create( Item object ) {
         return null;
     }

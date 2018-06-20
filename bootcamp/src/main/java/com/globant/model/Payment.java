@@ -1,11 +1,19 @@
 package com.globant.model;
 
-import java.util.ArrayList;
+
 
 public class Payment { private int id_payment;
     private Order order;
     private float amount;
-    public Payment(int id_payment, Order order, float amount){
+
+    public Payment() {
+    }
+
+    public Payment( int id_payment ) {
+        this.id_payment = id_payment;
+    }
+
+    public Payment( int id_payment, Order order, float amount){
         this. id_payment= id_payment;
         this.order = order;
         this.amount = amount;

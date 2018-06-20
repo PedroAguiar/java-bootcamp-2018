@@ -4,6 +4,12 @@ public class Item {private int id;
     private String name;
     private float price;
 
+    public Item() {
+    }
+
+    public Item( int id ) {
+        this.id = id;
+    }
 
     public Item( int id, String name, float price){
         this.id = id;

@@ -2,28 +2,33 @@ package com.globant.model;
 
 import java.util.ArrayList;
 
-public class Client { private int id_client;
+public class Client { private int id;
     private String name;
-    private String surmane;
+    private String surname;
     private String description;
-
     private ArrayList<Payment> PaymentArrayList;
 
-    public Client(int id_client, String name, String surname, String descriprion ){
-        this.id_client = id_client;
-        this.name = name;
-        this.surmane = surname;
-        this.description = description;
-
-
+    public Client() {
     }
 
-    public void setId( int id_cliente ) {
-        this.id_client = id_client;
+    public Client( int id ) {
+        this.id = id;
+    }
+
+    public Client( int id, String name, String surname, String description, ArrayList <Payment> paymentArrayList ) {
+        this.id = id;
+        this.name = name;
+        this.surname = surname;
+        this.description = description;
+        PaymentArrayList = paymentArrayList;
+    }
+
+    public void setId( int id ) {
+        this.id = id;
     }
 
     public int getId() {
-        return this.id_client;
+        return this.id;
     }
 
     public void setName( String name ) {
@@ -34,12 +39,12 @@ public class Client { private int id_client;
         return name;
     }
 
-    public void setSurmane( String surmane ) {
-        this.surmane = surmane;
+    public void setSurname( String surname ) {
+        this.surname =surname ;
     }
 
-    public String getSurmane() {
-        return surmane;
+    public String getSurname() {
+        return surname;
     }
 
     public void setDescription( String description ) {
@@ -50,14 +55,20 @@ public class Client { private int id_client;
         return description;
     }
 
+    public ArrayList <Payment> getPaymentArrayList() {
+        return PaymentArrayList;
+    }
 
+    public void setPaymentArrayList( ArrayList <Payment> paymentArrayList ) {
+        PaymentArrayList = paymentArrayList;
+    }
 
     @Override
     public String toString() {
         return "Client{" +
-                "id_client" + id_client +
+                "id_client" + id +
                 ", name='" + name + '\'' +
-                ", surmane='" + surmane + '\'' +
+                ", surmane='" + surname + '\'' +
                 ", description='" + description + '\'' +
                 '}';
     }

@@ -7,7 +7,7 @@ import java.util.ArrayList;
 public class ClientDTO {
     private String id;
     private String name;
-    private String surmane;
+    private String surname;
     private String description;
     private ArrayList<Payment> PaymentArrayList;
 
@@ -21,7 +21,7 @@ public class ClientDTO {
     public ClientDTO( String id, String name, String surmane, String description, ArrayList<Payment> paymentArrayList ) {
         this.id = id;
         this.name = name;
-        this.surmane = surmane;
+        this.surname = surname;
         this.description = description;
         PaymentArrayList = paymentArrayList;
     }
@@ -35,7 +35,7 @@ public class ClientDTO {
     }
 
     public String getSurmane() {
-        return surmane;
+        return surname;
     }
 
     public String getDescription() {
@@ -55,7 +55,7 @@ public class ClientDTO {
     }
 
     public void setSurmane( String surmane ) {
-        this.surmane = surmane;
+        this.surname = surname;
     }
 
     public void setDescription( String description ) {

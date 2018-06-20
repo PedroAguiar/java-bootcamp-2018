@@ -1,11 +1,11 @@
 package com.globant.dao;
 
-import com.globant.Service.ServicePayment;
+import com.globant.service.Service;
 import com.globant.model.Payment;
 
 import java.util.List;
 
-public class PaymentDAO implements ServicePayment {
+public class PaymentDAO implements Service <Payment> {
     public Payment create( Payment object ) {
         return null;
     }
