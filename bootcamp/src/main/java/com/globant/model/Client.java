@@ -1,27 +1,42 @@
 package com.globant.model;
 
+import javax.management.Descriptor;
 import java.util.ArrayList;
+import java.util.List;
 
 public class Client { private int id;
     private String name;
     private String surname;
     private String description;
-    private ArrayList<Payment> PaymentArrayList;
+    private List<Payment> PaymentList = new ArrayList <Payment> ();
 
-    public Client() {
+    public Client( String name, String surname, String description ) {
+        this.name = name;
+        this.surname = surname;
+        this.description=description;
+
+    }
+
+    public Client( int id, String name, String surname, String description ) {
+        this.id= id;
+        this.name = name;
+        this.surname = surname;
+        this.description= description;
     }
 
     public Client( int id ) {
         this.id = id;
     }
 
-    public Client( int id, String name, String surname, String description, ArrayList <Payment> paymentArrayList ) {
+    public Client( int id, String name, String surname, String description,List<Payment> PaymentList) {
         this.id = id;
         this.name = name;
         this.surname = surname;
         this.description = description;
-        PaymentArrayList = paymentArrayList;
+        this.PaymentList = PaymentList;
     }
+
+
 
     public void setId( int id ) {
         this.id = id;
@@ -55,12 +70,12 @@ public class Client { private int id;
         return description;
     }
 
-    public ArrayList <Payment> getPaymentArrayList() {
-        return PaymentArrayList;
+    public List <Payment> getPaymentList() {
+        return PaymentList;
     }
 
-    public void setPaymentArrayList( ArrayList <Payment> paymentArrayList ) {
-        PaymentArrayList = paymentArrayList;
+    public void setPaymentList( ArrayList <Payment> PaymentList ) {
+        PaymentList = PaymentList;
     }
 
     @Override

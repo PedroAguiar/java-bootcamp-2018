@@ -3,10 +3,11 @@ package com.globant.dto;
 import com.globant.model.Item;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class OrderDTO {
     private int id;
-    private ArrayList<Item> ItemList;
+    private List<Item> ItemList = new ArrayList<Item> ();
 
     public OrderDTO() {
     }
@@ -15,7 +16,7 @@ public class OrderDTO {
         this.id = id;
     }
 
-    public OrderDTO( int id, ArrayList <Item> itemList ) {
+    public OrderDTO( int id, List <Item> itemList ) {
         this.id = id;
         ItemList = itemList;
     }
@@ -24,7 +25,7 @@ public class OrderDTO {
         return id;
     }
 
-    public ArrayList <Item> getItemList() {
+    public List <Item> getItemList() {
         return ItemList;
     }
 
@@ -32,7 +33,7 @@ public class OrderDTO {
         this.id = id;
     }
 
-    public void setItemList( ArrayList <Item> itemList ) {
+    public void setItemList( List <Item> itemList ) {
         ItemList = itemList;
     }
 }

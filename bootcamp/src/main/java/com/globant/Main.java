@@ -1,6 +1,7 @@
 package com.globant;
 
 import com.globant.db.DBConnection;
+import com.globant.model.Client;
 
 
 import java.sql.Connection;
@@ -19,6 +20,9 @@ public class Main {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+
+
+
 
     }
 }

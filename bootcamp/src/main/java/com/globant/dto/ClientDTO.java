@@ -3,13 +3,14 @@ package com.globant.dto;
 import com.globant.model.Payment;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class ClientDTO {
     private String id;
     private String name;
     private String surname;
     private String description;
-    private ArrayList<Payment> PaymentArrayList;
+    private List<Payment> PaymentList = new ArrayList <Payment> ();
 
     public ClientDTO() {
     }
@@ -23,7 +24,7 @@ public class ClientDTO {
         this.name = name;
         this.surname = surname;
         this.description = description;
-        PaymentArrayList = paymentArrayList;
+        this.PaymentList = PaymentList;
     }
 
     public String getId() {
@@ -42,8 +43,8 @@ public class ClientDTO {
         return description;
     }
 
-    public ArrayList<Payment> getPaymentArrayList() {
-        return PaymentArrayList;
+    public List<Payment> getPaymentList() {
+        return PaymentList;
     }
 
     public void setId( String id ) {
@@ -62,7 +63,7 @@ public class ClientDTO {
         this.description = description;
     }
 
-    public void setPaymentArrayList( ArrayList<Payment> paymentArrayList ) {
-        PaymentArrayList = paymentArrayList;
+    public void setPaymentList( ArrayList <Payment> PaymentList ) {
+        PaymentList = PaymentList;
     }
 }
