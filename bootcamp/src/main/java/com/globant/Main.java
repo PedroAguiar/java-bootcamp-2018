@@ -1,7 +1,7 @@
 package com.globant;
 
 import com.globant.db.DBConnection;
-import com.globant.model.Client;
+
 
 
 import java.sql.Connection;
