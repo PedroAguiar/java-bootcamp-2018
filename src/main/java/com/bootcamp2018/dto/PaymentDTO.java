@@ -7,7 +7,7 @@ public class PaymentDTO {
     private int idClient;
 
     public PaymentDTO() {
-        payment =new Payment();
+        payment = new Payment();
 
     }
 

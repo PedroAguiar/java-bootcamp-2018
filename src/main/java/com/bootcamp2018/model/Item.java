@@ -1,5 +1,8 @@
 package com.bootcamp2018.model;
 
+import org.springframework.stereotype.Component;
+
+@Component
 public class Item {
     private int Id;
     private String name;
@@ -61,6 +64,6 @@ public class Item {
 
     @Override
     public String toString() {
-        return  "Code: "+getId()+ ", Name: "+getName() +", Price: $"+ getPrice();
+        return "Code: " + getId() + ", Name: " + getName() + ", Price: $" + getPrice();
     }
 }

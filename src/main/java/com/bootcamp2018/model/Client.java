@@ -1,12 +1,16 @@
 package com.bootcamp2018.model;
 
-import java.util.ArrayList;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
+@Component
 public class Client {
     private int id;
     private String name;
     private String lastName;
     private String description;
+    @Autowired
     private ArrayList<Payment> Payments;
 
     public Client(int id) {
@@ -92,15 +96,15 @@ public class Client {
     @Override
     public String toString() {
         String str;
-        str = "Name: "+ getName()+ ". Last name: "+ getLastName();
-        str += "\nDescription: "+getDescription();
-        if (getPayments().size() >0) {
+        str = "Name: " + getName() + ". Last name: " + getLastName();
+        str += "\nDescription: " + getDescription();
+        if (getPayments().size() > 0) {
             for (Payment p : getPayments()
-                 ) {
-                str +="\n" +p.toString();
+                    ) {
+                str += "\n" + p.toString();
             }
         } else {
-            str +="\nNo payments";
+            str += "\nNo payments";
         }
         return str;
 

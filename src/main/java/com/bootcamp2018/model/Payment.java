@@ -1,7 +1,13 @@
 package com.bootcamp2018.model;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
+
+@Component
 public class Payment {
     private int Id;
+    @Autowired
     private Order order;
     private double amount;
 
@@ -64,7 +70,7 @@ public class Payment {
 
     @Override
     public String toString() {
-            return "Payment Id: "+ getId()+ ", \n"+ getOrder().toString() + "\nAmount: $"+getAmount();
+        return "Payment Id: " + getId() + ", \n" + getOrder().toString() + "\nAmount: $" + getAmount();
     }
 
 }

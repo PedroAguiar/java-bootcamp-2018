@@ -1,8 +1,8 @@
-package com.bootcamp2018.service;
+package com.bootcamp2018.control;
 
 import java.util.ArrayList;
 
-public interface Service<T> {
+public interface Control<T> {
     T create(T object);
 
     T get(T object);

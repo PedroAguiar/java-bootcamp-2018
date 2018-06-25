@@ -1,9 +1,13 @@
 package com.bootcamp2018.model;
 
-import java.util.ArrayList;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
+@Component
 public class Order {
     private int Id;
+    @Autowired
     private ArrayList<OrderDetail> orderDetails;
 
     public Order() {
@@ -49,26 +53,27 @@ public class Order {
     @Override
     public String toString() {
         String str = "No Items in the order.";
-        if (orderDetails.size() >0){
-            str = "Order details: " ;
+        if (orderDetails.size() > 0) {
+            str = "Order details: ";
             for (int i = 0; i < orderDetails.size(); i++) {
-                str += "\n"+i+" "+orderDetails.get(i).toString();
+                str += "\n" + i + " " + orderDetails.get(i).toString();
             }
         }
         return str;
     }
+
     public void addOrderDetail(OrderDetail orderDetail) {
-        if(orderDetails.size()>0) {
+        if (orderDetails.size() > 0) {
             boolean ban = false;
-            for (OrderDetail od: orderDetails
-                 ) {
+            for (OrderDetail od : orderDetails
+                    ) {
                 if (od.equals(orderDetail)) {
-                    od.setQuantity(od.getQuantity()+orderDetail.getQuantity());
-                    ban =true ;
+                    od.setQuantity(od.getQuantity() + orderDetail.getQuantity());
+                    ban = true;
                 }
 
             }
-            if (!ban){
+            if (!ban) {
                 orderDetails.add(orderDetail);
             }
         }

@@ -8,10 +8,10 @@ import java.util.ArrayList;
 
 public class ClientDAO {
 
-    public Client createClient(Client client ) {
-        try(Connection con = DBConnection.getInstance().getDataSource().getConnection()) {
+    public Client createClient(Client client) {
+        try (Connection con = DBConnection.getInstance().getDataSource().getConnection()) {
             PreparedStatement pstmt;
-            pstmt = con.prepareStatement("INSERT INTO client (name,lastName, description) VALUES (?,?,?)",Statement.RETURN_GENERATED_KEYS);
+            pstmt = con.prepareStatement("INSERT INTO client (name,lastName, description) VALUES (?,?,?)", Statement.RETURN_GENERATED_KEYS);
             pstmt.setString(1, client.getName());
             pstmt.setString(2, client.getLastName());
             pstmt.setString(3, client.getDescription());
@@ -23,38 +23,39 @@ public class ClientDAO {
                 client.setId(-1);
             }
             pstmt.close();
-        } catch (Exception e){
+        } catch (Exception e) {
         }
         return new Client();
     }
+
     public ArrayList<Client> getClients() throws SQLException {
         ArrayList<Client> list = new ArrayList<>();
-        try (Connection con = DBConnection.getInstance().getDataSource().getConnection()){
+        try (Connection con = DBConnection.getInstance().getDataSource().getConnection()) {
             PreparedStatement pstmt;
             pstmt = con.prepareStatement("SELECT idClient, name, lastName, description FROM client");
             ResultSet rs = pstmt.executeQuery();
-            while (rs.next()){
+            while (rs.next()) {
                 list.add(ClientCreator.mapClient(rs));
             }
         } catch (Exception e) {
         }
         return list;
     }
+
     public Client getClient(Client cli) throws SQLException {
         Client client = new Client();
-        try (Connection con = DBConnection.getInstance().getDataSource().getConnection()){
+        try (Connection con = DBConnection.getInstance().getDataSource().getConnection()) {
             PreparedStatement pstmt;
             pstmt = con.prepareStatement("SELECT idClient, name, lastName, description FROM client WHERE idClient=?");
             pstmt.setString(1, cli.getName());
             ResultSet rs = pstmt.executeQuery();
-            while (rs.next()){
+            while (rs.next()) {
                 client = ClientCreator.mapClient(rs);
             }
         } catch (Exception e) {
         }
         return client;
     }
-
 
 
     public Client deleteItem(Client client) {
@@ -71,9 +72,10 @@ public class ClientDAO {
         }
         return client;
     }
+
     public Client updateItem(Client client) throws SQLException {
 
-        try(Connection con = DBConnection.getInstance().getDataSource().getConnection()) {
+        try (Connection con = DBConnection.getInstance().getDataSource().getConnection()) {
             PreparedStatement pstmt;
             pstmt = con.prepareStatement("UPDATE client SET name = ?, lastName = ?, description = ? WHERE idClient= ?");
             pstmt.setString(1, client.getName());
@@ -82,7 +84,7 @@ public class ClientDAO {
             pstmt.setInt(4, client.getId());
 
             int resp = pstmt.executeUpdate();
-            if (resp == 0)client = new Client();
+            if (resp == 0) client = new Client();
 
         } catch (Exception e) {
             client = new Client();
@@ -91,11 +93,11 @@ public class ClientDAO {
     }
 
 
-    static class ClientCreator{
+    static class ClientCreator {
 
         private static Client mapClient(ResultSet resultSet) throws SQLException {
             Client client;
-            client = new Client(resultSet.getInt(1),resultSet.getString(2),resultSet.getNString(3),resultSet.getNString(4));
+            client = new Client(resultSet.getInt(1), resultSet.getString(2), resultSet.getNString(3), resultSet.getNString(4));
             return client;
         }
 

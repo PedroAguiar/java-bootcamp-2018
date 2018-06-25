@@ -1,20 +1,34 @@
 package com.bootcamp2018.model;
 
+import org.springframework.stereotype.Component;
+
+@Component
 public class Discount {
     private Item item;
     private int quantity;
     private double price;
+    private int id;
 
     public Discount() {
+
         this.item = new Item();
         this.quantity = 0;
         this.price = 0;
+        this.id = 0;
     }
 
-    public Discount(Item item, int quantity) {
+    public Discount(Item item, int quantity, double price) {
         this.item = item;
         this.quantity = quantity;
-        this.price = 0;
+        this.price = price;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int idDiscount) {
+        this.id = idDiscount;
     }
 
     public Item getItem() {

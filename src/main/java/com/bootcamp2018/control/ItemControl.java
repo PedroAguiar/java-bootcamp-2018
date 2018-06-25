@@ -1,37 +1,40 @@
-package com.bootcamp2018.service;
+package com.bootcamp2018.control;
 
 import com.bootcamp2018.dao.ItemDAO;
 import com.bootcamp2018.model.Item;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RestController;
 
-import java.sql.SQLException;
+import javax.annotation.PostConstruct;
 import java.util.ArrayList;
 
-public class ItemService implements Service<Item> {
+@RestController
+public class ItemControl {
 
-    @Override
+
+
     public Item create(Item object) {
         ItemDAO itemDAO = new ItemDAO();
         return itemDAO.createItem(object);
     }
 
-    @Override
+
     public Item get(Item Object) {
         return null;
     }
 
-    @Override
     public ArrayList<Item> getList(Item object) {
         ItemDAO itemDAO = new ItemDAO();
         return itemDAO.retriveItems(object);
     }
 
-    @Override
+
     public Item update(Item object) {
         ItemDAO itemDAO = new ItemDAO();
         return itemDAO.updateItem(object);
     }
 
-    @Override
+
     public void delete(Item object) {
         ItemDAO itemDAO = new ItemDAO();
         itemDAO.deleteItem(object);

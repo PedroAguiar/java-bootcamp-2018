@@ -1,6 +1,11 @@
 package com.bootcamp2018.model;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
+@Component
 public class OrderDetail {
+    @Autowired
     private Item item;
     private int quantity;
     private double price;
@@ -47,8 +52,8 @@ public class OrderDetail {
         if (obj != null) {
             if (OrderDetail.class.isAssignableFrom(obj.getClass())) {
                 final OrderDetail other = (OrderDetail) obj;
-                if (this.getItem().equals( other.getItem())) {
-                    ban=true;
+                if (this.getItem().equals(other.getItem())) {
+                    ban = true;
                 }
             }
         }
@@ -57,9 +62,10 @@ public class OrderDetail {
 
     @Override
     public String toString() {
-        return "Item: "+this.item.getName() + ", quantity: "+this.quantity+", unit price: $"+this.price ;
+        return "Item: " + this.item.getName() + ", quantity: " + this.quantity + ", unit price: $" + this.price;
     }
+
     public double getSubTotal() {
-        return this.price*this.quantity;
+        return this.price * this.quantity;
     }
 }
