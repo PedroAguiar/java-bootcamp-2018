@@ -47,7 +47,7 @@ public class ItemDAO {
 
     }
 
-    public Item retriveItem(int id) throws SQLException {
+    public Item retriveItem(int id)  {
         Item list = new Item();
         try (Connection con = DBConnection.getInstance().getDataSource().getConnection()) {
             PreparedStatement pstmt;
