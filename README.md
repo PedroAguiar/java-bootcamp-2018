@@ -47,7 +47,7 @@ exercises**
 
     * [Topic 5: NoSQL - MongoDB](#topic-5-nosql---mongodb-2-days)
     
-    * [Topic 6: Spring Core & REST](#topic-5-spring-core--rest-3-days)
+    * [Topic 6: Spring Core & REST](#topic-6-spring-core--rest-3-days)
 
 10. [Your First Project Starts Now!](#your-first-project-starts-now)
 
@@ -335,7 +335,7 @@ Commit your practice code.
 
 → [index](#index)
 
-####Topic 5: NoSQL - MongoDB (2 days)
+#### Topic 5: NoSQL - MongoDB (2 days)
 
 ##### Reading:
 1. [SQL vs. NoSQL DB][no-sql]
@@ -364,7 +364,7 @@ Commit your practice code.
 
 → [index](#index)
 
-#### Topic 6: Spring Core & REST (3 days)####
+#### Topic 6: Spring Core & REST (3 days)
 
 ##### Reading:
 1. [Introduction to REST][rest]
@@ -405,38 +405,38 @@ The solution must use MongoDB or MySql as repository as well as Spring Boot and 
 
 Thanks for reading!
 
-[sdk]: (http://www.oracle.com/technetwork/java/javase/downloads/index.html)
-[eclipse]: (http://www.eclipse.org/downloads/)
-[eclipse-j2ee]: (http://www.eclipse.org/downloads/packages/eclipse-ide-java-ee-developers/mars1)
-[github]: (https://github.com/)
-[github-guide]: (https://help.github.com/articles/set-up-git)
-[try-git]: (https://try.github.io/levels/1/challenges/1)
-[learn-git]: (http://pcottle.github.io/learnGitBranching/)
-[fork-repo]: (https://help.github.com/articles/fork-a-repo/)
-[team]: (http://www.dummies.com/how-to/content/ten-qualities-of-an-effective-team-player.html)
-[formatter]: (https://github.com/juanpablopizarro/java-bootcamp-2016/blob/master/formatter.xml)
-[importing-formatter]: (http://www.avajava.com/tutorials/lessons/how-do-i-share-my-code-formatting-settings-with-another-user.html?page=2)
-[java-definitions]: (http://www.oracle.com/webfolder/technetwork/tutorials/obe/java/gc01/index.html#t1s1)
-[java-concepts]: (http://docs.oracle.com/javase/tutorial/java/concepts/)
-[introduction-to-java]: (http://www.ibm.com/developerworks/java/tutorials/j-introtojava1/)
-[design-patterns]: (http://www.avajava.com/tutorials/categories/design-patterns)
-[design-patterns-cheat-sheet]: (http://www.mcdonaldland.info/files/designpatterns/designpatternscard.pdf)
-[mock-objects]: (https://en.wikipedia.org/wiki/Mock_object)
-[abstract-factory]: (http://www.tutorialspoint.com/design_pattern/abstract_factory_pattern.htm)
-[what-is-maven]: (http://maven.apache.org/what-is-maven.html)
-[maven-in-5]: (http://maven.apache.org/guides/getting-started/maven-in-five-minutes.html)
-[maven-best-practices]: (http://books.sonatype.com/mvnref-book/reference/pom-relationships-sect-pom-best-practice.html)
-[tdd]: (http://technologyconversations.com/2013/12/24/test-driven-development-tdd-best-practices-using-java-examples-2/)
-[java-service]: (http://www.makinggoodsoftware.com/2009/11/17/how-to-create-services-in-java/)
-[api-design]: (https://www.youtube.com/watch?v=aAb7hSCtvGw)
-[my-sql]: (http://www.vogella.com/tutorials/MySQL/article.html)
-[jdbc]: (http://www.vogella.com/tutorials/MySQLJava/article.html#jdbc)
-[myslq-optimisation]: (http://www.arsys.info/programacion/bases-de-datos/como-optimizar-bases-de-datos-mysql/)
-[no-sql]: (http://www.thegeekstuff.com/2014/01/sql-vs-nosql-db/)
-[mongo]: (http://docs.mongodb.org/manual/installation)
-[sql-to-mongo]: (http://docs.mongodb.org/manual/reference/sql-comparison)
-[java-to-mongo]: (https://dzone.com/articles/using-morphia-map-java-objects)
-[rest]: (https://www.youtube.com/watch?v=YCcAE2SCQ6k)
-[spring-rest]: (https://spring.io/guides/gs/rest-service/)
-[spring-boot-rest]: (http://spring.io/guides/tutorials/bookmarks/)
-[swagger]: (http://swagger.io/getting-started/)
+[sdk]: http://www.oracle.com/technetwork/java/javase/downloads/index.html
+[eclipse]: http://www.eclipse.org/downloads/
+[eclipse-j2ee]: http://www.eclipse.org/downloads/packages/eclipse-ide-java-ee-developers/mars1
+[github]: https://github.com/
+[github-guide]: https://help.github.com/articles/set-up-git
+[try-git]: https://try.github.io/levels/1/challenges/1
+[learn-git]: http://pcottle.github.io/learnGitBranching/
+[fork-repo]: https://help.github.com/articles/fork-a-repo/
+[team]: http://www.dummies.com/how-to/content/ten-qualities-of-an-effective-team-player.html
+[formatter]: https://github.com/juanpablopizarro/java-bootcamp-2016/blob/master/formatter.xml
+[importing-formatter]: http://www.avajava.com/tutorials/lessons/how-do-i-share-my-code-formatting-settings-with-another-user.html?page=2
+[java-definitions]: http://www.oracle.com/webfolder/technetwork/tutorials/obe/java/gc01/index.html#t1s1
+[java-concepts]: http://docs.oracle.com/javase/tutorial/java/concepts/
+[introduction-to-java]: http://www.ibm.com/developerworks/java/tutorials/j-introtojava1/
+[design-patterns]: http://www.avajava.com/tutorials/categories/design-patterns
+[design-patterns-cheat-sheet]: http://www.mcdonaldland.info/files/designpatterns/designpatternscard.pdf
+[mock-objects]: https://en.wikipedia.org/wiki/Mock_object
+[abstract-factory]: http://www.tutorialspoint.com/design_pattern/abstract_factory_pattern.htm
+[what-is-maven]: http://maven.apache.org/what-is-maven.html
+[maven-in-5]: http://maven.apache.org/guides/getting-started/maven-in-five-minutes.html
+[maven-best-practices]: http://books.sonatype.com/mvnref-book/reference/pom-relationships-sect-pom-best-practice.html
+[tdd]: http://technologyconversations.com/2013/12/24/test-driven-development-tdd-best-practices-using-java-examples-2/
+[java-service]: http://www.makinggoodsoftware.com/2009/11/17/how-to-create-services-in-java/
+[api-design]: https://www.youtube.com/watch?v=aAb7hSCtvGw
+[my-sql]: http://www.vogella.com/tutorials/MySQL/article.html
+[jdbc]: http://www.vogella.com/tutorials/MySQLJava/article.html#jdbc
+[myslq-optimisation]: http://www.arsys.info/programacion/bases-de-datos/como-optimizar-bases-de-datos-mysql/
+[no-sql]: http://www.thegeekstuff.com/2014/01/sql-vs-nosql-db/
+[mongo]: http://docs.mongodb.org/manual/installation
+[sql-to-mongo]: http://docs.mongodb.org/manual/reference/sql-comparison
+[java-to-mongo]: https://dzone.com/articles/using-morphia-map-java-objects
+[rest]: https://www.youtube.com/watch?v=YCcAE2SCQ6k
+[spring-rest]: https://spring.io/guides/gs/rest-service/
+[spring-boot-rest]: http://spring.io/guides/tutorials/bookmarks/
+[swagger]: http://swagger.io/getting-started/
