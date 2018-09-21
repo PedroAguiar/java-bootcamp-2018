@@ -47,7 +47,7 @@ exercises**
 
     * [Topic 5: NoSQL - MongoDB](#topic-5-nosql---mongodb-2-days)
     
-    * [Topic 6: Spring Core & REST](#topic-5-spring-core--rest-3-days)
+    * [Topic 6: Spring Core & REST](#topic-6-spring-core--rest-3-days)
 
 10. [Your First Project Starts Now!](#your-first-project-starts-now)
 
@@ -92,15 +92,15 @@ Developers that move faster than average can go ahead and complete as much exerc
 
 ### Materials
 
-1. Install [Java SDK](http://www.oracle.com/technetwork/java/javase/downloads/index.html).
+1. Install [Java SDK][sdk].
 
-2. The IDE to use is [Eclipse for Java Developers](http://www.eclipse.org/downloads/). [JEE version Recommended](http://www.eclipse.org/downloads/packages/eclipse-ide-java-ee-developers/mars1).
+2. The IDE to use is [Eclipse for Java Developers][eclipse]. [JEE version Recommended][eclipse-j2ee].
 
 3. Skype Account + headset (audio calls)
 
-4. Create your own [GitHub](https://github.com/) account. Follow this [guideline](https://help.github.com/articles/set-up-git) to setup your account. Also you can read further about Git in [Try Git](https://try.github.io/levels/1/challenges/1) or [Learn Git Branching](http://pcottle.github.io/learnGitBranching/)
+4. Create your own [GitHub][github] account. Follow this [guideline][github-guide] to setup your account. Also you can read further about Git in [Try Git][try-git] or [Learn Git Branching][learn-git]
 
-5. Fork this repo https://github.com/juanpablopizarro/java-bootcamp-2016 to use as a base to host the project code. Read [this](https://help.github.com/articles/fork-a-repo/) for instructions.
+5. Fork this repo to use as a base to host the project code. Read [this][fork-repo] for instructions.
 
 → [index](#index)
 
@@ -119,13 +119,13 @@ The boot camp is organized in the following way:
     Bootcamp JAVA 2016 - ALL
 Every person participating in the bootcamp is present here (students and tutors). Here is the place to ask for technical assistance!
 
-4. [Team play](http://www.dummies.com/how-to/content/ten-qualities-of-an-effective-team-player.html) is encouraged but the work will be evaluated per person.
+4. [Team play][team] is encouraged but the work will be evaluated per person.
 
 5. The instructions will be vague as they generally are in real life projects. You must look for support and guidance from your tutor and teammates.
 
 6. All code and documentation must be in English.
 
-7. Code must adhere to this [eclipse code formatter](https://github.com/juanpablopizarro/java-bootcamp-2016/blob/master/formatter.xml). See importing instructions in this [link](http://www.avajava.com/tutorials/lessons/how-do-i-share-my-code-formatting-settings-with-another-user.html?page=2).
+7. Code must adhere to this [eclipse code formatter][formatter]. See importing instructions in this [link][importing-formatter].
 
 → [index](#index)
 
@@ -158,29 +158,29 @@ You will commit all your code on a daily basis, when you finish your practice.
 
 ### Introduction
 
-  - [JVM](http://www.oracle.com/webfolder/technetwork/tutorials/obe/java/gc01/index.html#t1s1). See: "Java Technology and the JVM" and "Describing Garbage Collection"
+  - [JVM][java-definitions]. See: "Java Technology and the JVM" and "Describing Garbage Collection"
 
 #### Topic 0: Introduction to Object Oriented Programming Concepts (2 days)####
 
 ##### Reading:
 
-1. Beginners: Java Concepts [basic tutorial](http://docs.oracle.com/javase/tutorial/java/concepts/) (in case you need it!)
+1. Beginners: Java Concepts [basic tutorial][java-concepts] (in case you need it!)
 
-2. Beginners: Have fun with [Introduction to Java Programming](http://www.ibm.com/developerworks/java/tutorials/j-introtojava1/). Do as much you can.
+2. Beginners: Have fun with [Introduction to Java Programming][introduction-to-java]. Do as much you can.
 
-3. Explore [Design Patterns](http://www.avajava.com/tutorials/categories/design-patterns). Minimum scope: singleton, factory, abstract factory, strategy, template method, proxy, decorator and builder.
+3. Explore [Design Patterns][design-patterns]. Minimum scope: singleton, factory, abstract factory, strategy, template method, proxy, decorator and builder.
 
 ##### Extra documentation:
 
-* [Design Patterns Card](http://www.mcdonaldland.info/files/designpatterns/designpatternscard.pdf)
+* [Design Patterns Card][design-patterns-cheat-sheet]
 
 
 ##### Practice:
 
-Note that you don't need to create real database connections, [just mock it](https://en.wikipedia.org/wiki/Mock_object) (create a simulation of them).
+Note that you don't need to create real database connections, [just mock it][mock-objects] (create a simulation of them).
 
 1. Create a singleton example for a database connection.
-2. Create a abstract factory example for diferent type of SQL connections. See [this](http://www.tutorialspoint.com/design_pattern/abstract_factory_pattern.htm) example.
+2. Create a abstract factory example for diferent type of SQL connections. See [this][abstract-factory] example.
 3. Create a proxy example for database accesor clases.
 4. Create a builder example for database connection.
 
@@ -197,11 +197,11 @@ Commit your practice code.
 #### Topic 1: Maven (1 day)
 
 ##### Reading:
-1. [What is Maven?](http://maven.apache.org/what-is-maven.html)
+1. [What is Maven?][what-is-maven]
 
-2. Have fun with [Maven in 5 minutes](http://maven.apache.org/guides/getting-started/maven-in-five-minutes.html). 
+2. Have fun with [Maven in 5 minutes][maven-in-5]. 
 
-3. Maven: [best practices](http://books.sonatype.com/mvnref-book/reference/pom-relationships-sect-pom-best-practice.html)
+3. Maven: [best practices][maven-best-practices]
 
 ##### Practice:
 
@@ -225,7 +225,7 @@ Commit your practice code.
 #### Topic 2: Test Driven Development (2 days)
 
 ##### Reading:
-1. [Test Driven Development](http://technologyconversations.com/2013/12/24/test-driven-development-tdd-best-practices-using-java-examples-2/)
+1. [Test Driven Development][tdd]
 
 ##### Practice:
 
@@ -253,9 +253,9 @@ Commit your practice code.
 #### Topic 3: Services (2 days)
 
 ##### Reading:
-1. [How to create services in Java](http://www.makinggoodsoftware.com/2009/11/17/how-to-create-services-in-java/)
+1. [How to create services in Java][java-service]
 
-2. [How to design a good API and why it matters](https://www.youtube.com/watch?v=aAb7hSCtvGw)
+2. [How to design a good API and why it matters][api-design]
 
 ##### Practice:
 
@@ -281,13 +281,13 @@ Commit your practice code.
 #### Topic 4: SQL - MySql (2 days)
 
 ##### Reading:
-1. [MySql basis](http://www.vogella.com/tutorials/MySQL/article.html)
+1. [MySql basis][my-sql]
 
-2. [Jdbc basis](http://www.vogella.com/tutorials/MySQLJava/article.html#jdbc)
+2. [Jdbc basis][jdbc]
 
 ##### Extra documentation:
 
-1. [Optimizaciones en MySql](http://www.arsys.info/programacion/bases-de-datos/como-optimizar-bases-de-datos-mysql/)
+1. [MySql optimization][myslq-optimisation]
 
 
 ##### Practice:
@@ -335,16 +335,16 @@ Commit your practice code.
 
 → [index](#index)
 
-####Topic 5: NoSQL - MongoDB (2 days)
+#### Topic 5: NoSQL - MongoDB (2 days)
 
 ##### Reading:
-1. [SQL vs. NoSQL DB](http://www.thegeekstuff.com/2014/01/sql-vs-nosql-db/)
+1. [SQL vs. NoSQL DB][no-sql]
 
-2. [Installing MongoDB](http://docs.mongodb.org/manual/installation)
+2. [Installing MongoDB][mongo]
 
-3. [SQL to MongoDB Mapping Chart](http://docs.mongodb.org/manual/reference/sql-comparison)
+3. [SQL to MongoDB Mapping Chart][sql-to-mongo]
 
-4. [Morphia to Map Java objects in MongoDB](https://dzone.com/articles/using-morphia-map-java-objects)
+4. [Morphia to Map Java objects in MongoDB][java-to-mongo]
 
 
 ##### Practice:
@@ -364,16 +364,16 @@ Commit your practice code.
 
 → [index](#index)
 
-#### Topic 6: Spring Core & REST (3 days)####
+#### Topic 6: Spring Core & REST (3 days)
 
 ##### Reading:
-1. [Introduction to REST](https://www.youtube.com/watch?v=YCcAE2SCQ6k)
+1. [Introduction to REST][rest]
 
-2. [Quick development guide](https://spring.io/guides/gs/rest-service/)
+2. [Quick development guide][spring-rest]
 
-3. [Spring boot - rest services guide](http://spring.io/guides/tutorials/bookmarks/)
+3. [Spring boot - rest services guide][spring-boot-rest]
 
-4. [REST API documentation](http://swagger.io/getting-started/)
+4. [REST API documentation][swagger]
   
 ##### Practice:
 
@@ -404,3 +404,39 @@ Create a functional shopping cart (just REST api). The minimum features to be co
 The solution must use MongoDB or MySql as repository as well as Spring Boot and swagger for REST documentation.
 
 Thanks for reading!
+
+[sdk]: https://www.oracle.com/technetwork/java/javase/downloads/index.html
+[eclipse]: https://www.eclipse.org/downloads/
+[eclipse-j2ee]: https://www.eclipse.org/downloads/packages/release/photon/r/eclipse-ide-java-ee-developers
+[github]: https://github.com/
+[github-guide]: https://help.github.com/articles/set-up-git
+[try-git]: https://try.github.io/
+[learn-git]: https://pcottle.github.io/learnGitBranching/
+[fork-repo]: https://help.github.com/articles/fork-a-repo/
+[team]: https://www.dummies.com/how-to/content/ten-qualities-of-an-effective-team-player.html
+[formatter]: https://raw.githubusercontent.com/spring-projects/spring-batch/master/spring-eclipse-code-conventions.xml
+[importing-formatter]: https://che.eclipse.org/release-note-5-18-993516476315
+[java-definitions]: https://www.oracle.com/webfolder/technetwork/tutorials/obe/java/gc01/index.html#t1s1
+[java-concepts]: https://docs.oracle.com/javase/tutorial/java/concepts/
+[introduction-to-java]: https://www.ibm.com/developerworks/java/tutorials/j-introtojava1/
+[design-patterns]: https://www.avajava.com/tutorials/categories/design-patterns
+[design-patterns-cheat-sheet]: http://www.mcdonaldland.info/files/designpatterns/designpatternscard.pdf
+[mock-objects]: https://en.wikipedia.org/wiki/Mock_object
+[abstract-factory]: https://www.tutorialspoint.com/design_pattern/abstract_factory_pattern.htm
+[what-is-maven]: https://maven.apache.org/what-is-maven.html
+[maven-in-5]: https://maven.apache.org/guides/getting-started/maven-in-five-minutes.html
+[maven-best-practices]: https://books.sonatype.com/mvnref-book/reference/pom-relationships-sect-pom-best-practice.html
+[tdd]: https://technologyconversations.com/2013/12/24/test-driven-development-tdd-best-practices-using-java-examples-2/
+[java-service]: https://spring.io/guides/gs/rest-service/
+[api-design]: https://www.youtube.com/watch?v=aAb7hSCtvGw
+[my-sql]: https://dev.mysql.com/doc/refman/en/
+[jdbc]: https://www.oracle.com/technetwork/java/javase/jdbc/index.html
+[myslq-optimisation]: https://www.arsys.es/blog/bases-de-datos/como-optimizar-bases-de-datos-mysql/
+[no-sql]: https://www.thegeekstuff.com/2014/01/sql-vs-nosql-db/
+[mongo]: https://docs.mongodb.com/manual/installation/
+[sql-to-mongo]: https://docs.mongodb.com/manual/reference/sql-comparison/
+[java-to-mongo]: https://dzone.com/articles/using-morphia-map-java-objects
+[rest]: https://www.youtube.com/watch?v=YCcAE2SCQ6k
+[spring-rest]: https://spring.io/guides/gs/rest-service/
+[spring-boot-rest]: http://spring.io/guides/tutorials/bookmarks/
+[swagger]: https://swagger.io/getting-started/
